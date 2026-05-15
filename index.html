@@ -1,1033 +1,709 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ashutosh Vaishnav - Software Developer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
-    <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ashutosh Vaishnav – Full Stack Developer & Automation Engineer</title>
+  <meta name="description" content="Portfolio of Ashutosh Vaishnav – Full Stack Developer and Automation Engineer with 5+ years of experience." />
+  <meta property="og:title" content="Ashutosh Vaishnav – Developer & Automation Engineer" />
+  <meta property="og:description" content="Full Stack Developer & Automation Engineer. I build products that scale and workflows that run themselves." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #060a0f;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+    ::selection { background: #00FF8830; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #060a0f; }
+    ::-webkit-scrollbar-thumb { background: #00FF8840; border-radius: 2px; }
 
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(6,10,15,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid #ffffff0d;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw; height: 60px;
+    }
+    .nav-logo {
+      font-family: monospace; font-weight: 700; font-size: 18px;
+      color: #00FF88; letter-spacing: 2px; cursor: pointer; user-select: none;
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-link {
+      background: none; border: none; color: #aaa; font-size: 13px;
+      cursor: pointer; font-family: monospace; letter-spacing: 1px;
+      padding: 4px 0; transition: color 0.2s; text-decoration: none;
+    }
+    .nav-link:hover { color: #00FF88; }
+    .nav-views { font-family: monospace; font-size: 11px; color: #555; border-left: 1px solid #ffffff10; padding-left: 16px; }
 
-        * {
-            font-family: "Inter", sans-serif;
-        }
+    /* HERO */
+    #hero {
+      position: relative; min-height: 100vh; display: flex;
+      align-items: center; padding: 0 5vw; overflow: hidden;
+    }
+    #particle-canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.6; pointer-events: none; }
+    .hero-inner { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; width: 100%; padding-top: 60px; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .hero-left { animation: fadeUp 0.8s ease both; }
+    .hero-right { animation: fadeUp 0.8s 0.2s ease both; }
+    .badge {
+      display: inline-block; border-radius: 20px;
+      padding: 4px 14px; font-size: 12px; font-family: monospace;
+    }
+    .badge-green { background: #00FF8815; border: 1px solid #00FF8840; color: #00FF88; }
+    h1.hero-name {
+      font-family: monospace; font-size: 52px; font-weight: 900; color: #fff;
+      line-height: 1.1; margin: 16px 0; letter-spacing: -1px; cursor: pointer;
+    }
+    h1.hero-name span { color: #00FF88; }
+    .hero-desc { font-size: 16px; color: #888; line-height: 1.7; margin-bottom: 28px; }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      background: #00FF88; color: #000; border: none; border-radius: 8px;
+      padding: 12px 24px; font-size: 14px; font-weight: 700; cursor: pointer;
+      font-family: monospace; letter-spacing: 1px; transition: all 0.2s; text-decoration: none;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: #00cc6a; }
+    .btn-secondary {
+      background: transparent; color: #fff; border: 1px solid #ffffff20; border-radius: 8px;
+      padding: 12px 24px; font-size: 14px; cursor: pointer; font-family: monospace;
+      transition: all 0.2s; text-decoration: none; display: inline-block;
+    }
+    .btn-secondary:hover { border-color: #ffffff40; }
+    .hero-stats { display: flex; gap: 24px; margin-top: 32px; }
+    .stat-num { font-family: monospace; font-size: 22px; font-weight: 700; color: #00FF88; }
+    .stat-sub { font-size: 11px; color: #555; margin-top: 2px; }
+    .terminal-box {
+      background: #0d1117; border: 1px solid #00FF8820; border-radius: 16px; padding: 24px 28px;
+    }
+    .terminal-dots { display: flex; gap: 8px; margin-bottom: 16px; align-items: center; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .terminal-label { font-family: monospace; font-size: 12px; color: #444; margin-left: 8px; }
+    .terminal-body { font-family: 'Courier New', monospace; font-size: 15px; line-height: 1.8; }
+    .term-line { display: block; }
+    .cursor { animation: blink 1s infinite; color: #00FF88; }
+    .scroll-hint { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); animation: float 2s infinite; color: #333; font-size: 24px; }
 
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+    /* SECTIONS */
+    section { padding: 90px 5vw 60px; }
+    .section-inner { max-width: 960px; margin: 0 auto; }
+    .section-alt { background: #0a0e14; }
+    .section-label { font-family: monospace; font-size: 12px; color: #00FF88; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+    .section-title { font-size: 38px; font-weight: 700; color: #fff; margin-bottom: 40px; line-height: 1.2; }
 
-        .gradient-bg {
-            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-        }
+    /* EXPERIENCE */
+    .exp-card { border-left: 3px solid var(--exp-color); padding-left: 24px; margin-bottom: 40px; }
+    .exp-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+    .exp-company { font-family: monospace; font-size: 20px; font-weight: 700; }
+    .exp-role { font-size: 15px; color: #ccc; margin-top: 2px; }
+    .exp-meta { text-align: right; }
+    .exp-badge { border-radius: 20px; padding: 4px 14px; font-size: 11px; font-family: monospace; border: 1px solid; display: inline-block; }
+    .exp-location { font-size: 11px; color: #555; margin-top: 4px; }
+    .exp-engagements { margin-bottom: 12px; }
+    .eng-label { font-size: 11px; color: #555; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+    .eng-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .eng-tag { border-radius: 6px; padding: 3px 10px; font-size: 11px; font-family: monospace; border: 1px solid; }
+    .exp-points { padding-left: 18px; }
+    .exp-points li { font-size: 14px; color: #888; margin-bottom: 6px; line-height: 1.6; }
 
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; }
+    .project-card {
+      background: #0d1117; border: 1px solid #ffffff15; border-radius: 16px;
+      padding: 28px; transition: all 0.3s ease; cursor: default;
+    }
+    .project-card:hover { transform: translateY(-4px); }
+    .project-top { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
+    .project-icon { font-size: 36px; }
+    .project-name { font-family: monospace; font-weight: 700; font-size: 20px; letter-spacing: 1px; }
+    .project-tagline { font-size: 13px; color: #888; margin-top: 2px; }
+    .project-desc { font-size: 14px; color: #bbb; line-height: 1.7; margin-bottom: 20px; }
+    .pill-label { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .pill-feature { border-radius: 20px; padding: 3px 10px; font-size: 12px; border: 1px solid; }
+    .pill-tech { background: #ffffff08; border: 1px solid #ffffff15; color: #aaa; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-family: monospace; }
 
-            50% {
-                background-position: 100% 50%;
-            }
+    /* AUTOMATIONS */
+    .auto-card {
+      background: #0d1117; border: 1px solid #ffffff15; border-radius: 12px;
+      padding: 20px 24px; cursor: pointer; transition: all 0.3s ease; margin-bottom: 12px;
+    }
+    .auto-header { display: flex; align-items: center; justify-content: space-between; }
+    .auto-left { display: flex; align-items: center; gap: 14px; }
+    .auto-icon { font-size: 24px; }
+    .auto-title { font-weight: 600; font-size: 15px; color: #fff; font-family: monospace; }
+    .auto-desc { font-size: 13px; color: #888; margin-top: 4px; max-width: 520px; }
+    .auto-toggle { font-size: 18px; transition: transform 0.3s; }
+    .auto-flow { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .flow-step { border-radius: 6px; padding: 4px 10px; font-size: 12px; border: 1px solid; white-space: nowrap; }
+    .flow-arrow { font-size: 14px; opacity: 0.6; }
 
-            100% {
-                background-position: 0% 50%;
-            }
-        }
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
+    .skill-cat { background: #0d1117; border: 1px solid #ffffff0d; border-radius: 12px; padding: 20px; }
+    .skill-cat-label { font-family: monospace; font-size: 12px; color: #00FF88; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+    .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-pill {
+      background: #ffffff06; border: 1px solid #ffffff10; border-radius: 6px;
+      padding: 4px 10px; font-size: 12px; color: #bbb; font-family: monospace;
+      cursor: default; transition: all 0.2s;
+    }
+    .skill-pill:hover { background: rgba(0,255,136,0.12); border-color: rgba(0,255,136,0.4); color: #00FF88; }
 
-        .typewriter {
-            overflow: hidden;
-            border-right: 0.15em solid #667eea;
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: 0.15em;
-            animation: typing 3.5s steps(40, end),
-                blink-caret 0.75s step-end infinite;
-        }
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+    .contact-desc { font-size: 15px; color: #888; line-height: 1.8; margin-bottom: 28px; }
+    .email-card {
+      background: #0d1117; border: 1px solid #ffffff10; border-radius: 10px;
+      padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between;
+      align-items: center; transition: all 0.2s; margin-bottom: 12px;
+    }
+    .email-card:hover { border-color: #00FF8840; }
+    .email-label { font-size: 11px; color: #555; margin-bottom: 2px; font-family: monospace; }
+    .email-val { font-size: 14px; color: #ccc; font-family: monospace; }
+    .copy-hint { font-size: 12px; color: #555; transition: color 0.2s; }
+    .social-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .social-link {
+      background: #0d1117; border: 1px solid #ffffff10; border-radius: 8px;
+      padding: 8px 14px; font-size: 12px; color: #888; font-family: monospace;
+      text-decoration: none; transition: all 0.2s; display: inline-block;
+    }
+    .social-link:hover { border-color: #00FF8840; color: #00FF88; }
+    .avail-card {
+      background: #0d1117; border: 1px solid #00FF8815; border-radius: 16px;
+      padding: 28px; text-align: center;
+    }
+    .avail-rocket { font-size: 48px; margin-bottom: 12px; animation: float 3s infinite; display: block; }
+    .avail-title { font-family: monospace; font-size: 16px; color: #00FF88; margin-bottom: 8px; }
+    .avail-sub { font-size: 13px; color: #555; line-height: 1.7; }
+    .avail-views { margin-top: 20px; font-family: monospace; font-size: 11px; color: #333; }
 
-        @keyframes typing {
-            from {
-                width: 0;
-            }
+    /* FOOTER */
+    footer {
+      border-top: 1px solid #ffffff08; padding: 24px 5vw;
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 960px; margin: 0 auto;
+    }
+    .footer-copy { font-family: monospace; font-size: 12px; color: #333; }
+    .footer-views { font-family: monospace; font-size: 11px; color: #222; }
 
-            to {
-                width: 100%;
-            }
-        }
+    /* EASTER EGG */
+    #easter-egg {
+      position: fixed; inset: 0; z-index: 999; background: #060a0fee;
+      display: none; flex-direction: column; align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+    #easter-egg.show { display: flex; }
+    .egg-emoji { font-size: 80px; animation: float 2s infinite; }
+    .egg-title { font-family: monospace; color: #00FF88; font-size: 20px; margin-top: 20px; }
+    .egg-sub { color: #555; font-size: 13px; margin-top: 8px; }
 
-        @keyframes blink-caret {
-
-            from,
-            to {
-                border-color: transparent;
-            }
-
-            50% {
-                border-color: #667eea;
-            }
-        }
-
-        .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-
-            50% {
-                transform: translateY(-20px) rotate(180deg);
-            }
-        }
-
-        .skill-badge:hover {
-            transform: scale(1.1);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .project-card {
-            transition: all 0.3s ease;
-            transform-style: preserve-3d;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px) rotateX(5deg);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .project-card:hover .project-image {
-            transform: scale(1.05);
-        }
-
-        .project-image {
-            transition: transform 0.3s ease;
-        }
-
-        .timeline-item {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.6s ease;
-        }
-
-        .timeline-item.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .stagger-delay-1 {
-            transition-delay: 0.1s;
-        }
-
-        .stagger-delay-2 {
-            transition-delay: 0.2s;
-        }
-
-        .stagger-delay-3 {
-            transition-delay: 0.3s;
-        }
-
-        .stagger-delay-4 {
-            transition-delay: 0.4s;
-        }
-    </style>
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      h1.hero-name { font-size: 38px; }
+      .section-title { font-size: 28px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 14px; }
+      .nav-link { font-size: 11px; }
+    }
+  </style>
 </head>
+<body>
 
-<body class="bg-gray-900 text-white overflow-x-hidden">
-    <nav class="fixed top-0 w-full z-50 glass-effect">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="text-2xl font-bold gradient-bg bg-clip-text text-transparent">
-                    Ashutosh Vaishnav
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="hover:text-purple-400 transition-colors">Home</a>
-                    <a href="#about" class="hover:text-purple-400 transition-colors">About</a>
-                    <a href="#skills" class="hover:text-purple-400 transition-colors">Skills</a>
-                    <a href="#projects" class="hover:text-purple-400 transition-colors">Projects</a>
-                    <a href="#experience" class="hover:text-purple-400 transition-colors">Experience</a>
-                    <a href="#contact" class="hover:text-purple-400 transition-colors">Contact</a>
-                </div>
-                <button class="md:hidden" onclick="toggleMobileMenu()">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" id="nav-logo">AV.</div>
+  <div class="nav-links">
+    <a class="nav-link" href="#experience">Experience</a>
+    <a class="nav-link" href="#projects">Projects</a>
+    <a class="nav-link" href="#automations">Automations</a>
+    <a class="nav-link" href="#skills">Skills</a>
+    <a class="nav-link" href="#contact">Contact</a>
+    <div class="nav-views" id="nav-views"></div>
+  </div>
+</nav>
+
+<!-- EASTER EGG -->
+<div id="easter-egg">
+  <div class="egg-emoji">🤖</div>
+  <div class="egg-title">You found the easter egg!</div>
+  <div class="egg-sub">Click anywhere to close</div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="particle-canvas"></canvas>
+  <div class="hero-inner">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <span class="badge badge-green">Open to work · India 🇮🇳</span>
+        <h1 class="hero-name" id="hero-name">Ashutosh<br><span>Vaishnav.</span></h1>
+        <p class="hero-desc">Full Stack Developer &amp; Automation Engineer with 5+ years building products that scale and workflows that run themselves. I bridge code and no-code to ship fast.</p>
+        <div class="hero-btns">
+          <a class="btn-primary" href="#contact">Let's Talk →</a>
+          <a class="btn-secondary" href="#projects">See My Work</a>
         </div>
-        <div id="mobile-menu" class="md:hidden hidden text-blue-500 border-t border-gray-200">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#home" class="block px-3 py-2 text-base font-medium text-white hover:text-blue-300">Home</a>
-                <a href="#about" class="block px-3 py-2 text-base font-medium text-white hover:text-blue-300">About</a>
-                <a href="#skills"
-                    class="block px-3 py-2 text-base font-medium text-white hover:text-blue-300">Skills</a>
-                <a href="#projects"
-                    class="block px-3 py-2 text-base font-medium text-white hover:text-blue-300">Projects</a>
-                <a href="#experience"
-                    class="block px-3 py-2 text-base font-medium text-white hover:text-blue-300">Experience</a>
-                <a href="#contact"
-                    class="block px-3 py-2 text-base font-medium text-white hover:text-blue-300">Contact</a>
-            </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">5+</div>
+            <div class="stat-sub">Years Exp.</div>
+          </div>
+          <div>
+            <div class="stat-num">50%</div>
+            <div class="stat-sub">Manual work saved</div>
+          </div>
+          <div>
+            <div class="stat-num">30%</div>
+            <div class="stat-sub">Faster lead response</div>
+          </div>
         </div>
-    </nav>
-
-<section id="home"
-    class="min-h-screen flex items-center justify-center relative overflow-hidden bg-[#0A0A0A] text-white">
-    <div class="absolute inset-0 z-0 backdrop"></div>
-    <div class="text-center z-10 px-4 max-w-4xl mx-auto">
-        <div class="mb-8">
-            <div
-                class="w-40 h-40 mx-auto rounded-full gradient-bg flex items-center justify-center text-6xl mb-8 hover-lift">
-                👨🏻‍💻
-            </div>
+      </div>
+      <div class="hero-right">
+        <div class="terminal-box">
+          <div class="terminal-dots">
+            <div class="dot" style="background:#ff5f57"></div>
+            <div class="dot" style="background:#febc2e"></div>
+            <div class="dot" style="background:#28c840"></div>
+            <span class="terminal-label">terminal</span>
+          </div>
+          <div class="terminal-body" id="terminal-output"></div>
         </div>
-
-        <h1 class="text-3xl md:text-7xl font-bold mb-6">
-            Hi, I'm <span class="gradient-bg bg-clip-text text-transparent">Ashutosh Vaishnav</span>
-        </h1>
-
-        <div class="min-h-[52px] text-xl md:text-3xl mb-8 text-gray-300">
-            <span class="typing-animation">Problem Solver &amp; Creative Thinker</span>
-        </div>
-
-        <p class="text-sm text-gray-400 mb-12 max-w-2xl mx-auto">
-            I create beautiful, functional, and user-centered digital experiences that make a difference.
-        </p>
-
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#projects">
-                <button class="gradient-bg text-white px-8 py-4 rounded-full font-semibold hover-lift">
-                    <i class="fas fa-code mr-2"></i>
-                    View My Work
-                </button>
-            </a>
-            <a href="https://flowcv.com/resume/wvjsfod2bw" target="_blank">
-                <button
-                    class="border-2 border-purple-500 text-purple-400 px-8 py-4 rounded-full font-semibold hover:bg-purple-500 hover:text-white transition-all">
-                    <i class="fas fa-eye mr-2"></i>
-                    View Resume
-                </button>
-            </a>
-        </div>
+      </div>
     </div>
-
-    <!-- This part of the code is for the animation -->
-    <style>
-        .gradient-bg {
-            background-image: linear-gradient(45deg, #a855f7, #6366f1);
-        }
-
-        .hover-lift:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .backdrop {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-            opacity: 0.1;
-            overflow: hidden;
-        }
-
-        @keyframes falling-icon {
-            0% {
-                transform: translateY(-100vh) rotate(0deg);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 1;
-            }
-
-            90% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .backdrop .icon-container {
-            position: absolute;
-            animation-name: falling-icon;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-            font-size: 2rem;
-            color: white;
-            /* Added transition for smooth deflection */
-            transition: transform 0.2s ease-out;
-        }
-
-        /* Updated style for the icon itself */
-        .backdrop .icon-container i {
-            display: block;
-            transition: transform 0.2s ease-out;
-        }
-    </style>
+  </div>
+  <div class="scroll-hint">↓</div>
 </section>
 
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="section-label">02 / Experience</div>
+    <h2 class="section-title">Where I've Built Things</h2>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">About Me</h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                    I'm a passionate software developer with 4.5+ years of experience
-                    building scalable web applications and mobile solutions. I love
-                    turning complex problems into simple, beautiful, and intuitive
-                    solutions.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center p-8 bg-gray-700 rounded-2xl fade-in stagger-delay-1">
-                    <div class="text-4xl mb-4">🚀</div>
-                    <h3 class="text-xl font-semibold mb-4">Performance Focused</h3>
-                    <p class="text-gray-300">
-                        Optimizing applications for speed and efficiency
-                    </p>
-                </div>
-                <div class="text-center p-8 bg-gray-700 rounded-2xl fade-in stagger-delay-2">
-                    <div class="text-4xl mb-4">💡</div>
-                    <h3 class="text-xl font-semibold mb-4">Innovation Driven</h3>
-                    <p class="text-gray-300">
-                        Always exploring new technologies and methodologies
-                    </p>
-                </div>
-                <div class="text-center p-8 bg-gray-700 rounded-2xl fade-in stagger-delay-3">
-                    <div class="text-4xl mb-4">🎯</div>
-                    <h3 class="text-xl font-semibold mb-4">User Centric</h3>
-                    <p class="text-gray-300">
-                        Creating intuitive experiences that users love
-                    </p>
-                </div>
-            </div>
+    <!-- JumpStartCXO -->
+    <div class="exp-card" style="--exp-color:#00FF88">
+      <div class="exp-header">
+        <div>
+          <div class="exp-company" style="color:#00FF88">JumpStartCXO</div>
+          <div class="exp-role">Senior Full Stack Engineer</div>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">Technical Skills</h2>
-                <p class="text-xl text-gray-300">Technologies I work with</p>
-            </div>
-
-            <div class="grid md:grid-cols-4 gap-8">
-                <!-- Frontend -->
-                <div class="fade-in stagger-delay-1">
-                    <h3 class="text-2xl font-semibold mb-6 text-center">Frontend</h3>
-                    <div class="space-y-4">
-                        <div
-                            class="skill-badge bg-cyan-600 p-4 rounded-xl text-center cursor-pointer transition-all duration-300">
-                            <i class="fab fa-react text-2xl mb-2"></i>
-                            <div class="font-semibold">React</div>
-                        </div>
-                        <div
-                            class="skill-badge bg-green-600 p-4 rounded-xl text-center cursor-pointer transition-all duration-300">
-                            <i class="devicon-nextjs-original-wordmark text-2xl mb-2"></i>
-                            <div class="font-semibold">Next.js</div>
-                        </div>
-                        <div
-                            class="skill-badge bg-yellow-600 p-4 rounded-xl text-center cursor-pointer transition-all duration-300">
-                            <i class="fab fa-js text-2xl mb-2"></i>
-                            <div class="font-semibold">JavaScript</div>
-                        </div>
-                        <div
-                            class="skill-badge bg-blue-500 p-4 rounded-xl text-center cursor-pointer transition-all duration-300">
-
-                            <i class="devicon-tailwindcss-original text-2xl mb-2"></i>
-                            <div class="font-semibold">Tailwind CSS</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Backend -->
-                <div class="fade-in stagger-delay-2">
-                    <h3 class="text-2xl font-semibold mb-6 text-center">Backend</h3>
-                    <div class="space-y-4">
-                        <div
-                            class="skill-badge bg-green-700 p-4 rounded-xl text-center cursor-pointer transition-all duration-300">
-                            <i class="devicon-nodejs-plain text-2xl mb-2"></i>
-                            <div class="font-semibold">Node.js</div>
-                        </div>
-                        <div
-                            class="skill-badge bg-blue-700 p-4 rounded-xl text-center cursor-pointer transition-all duration-300">
-                            <i class="fab fa-python text-2xl mb-2"></i>
-                            <div class="font-semibold">Python</div>
-                        </div>
-                        <div
-                            class="skill-badge bg-red-600 p-4 rounded-xl text-center cursor-pointer transition-all duration-300">
-                            <i class="devicon-mongodb-plain text-2xl mb-2"></i>
-                            <div class="font-semibold">MongoDB</div>
-                        </div>
-                        <div
-                            class="skill-badge bg-blue-800 p-4 rounded-xl text-center cursor-pointer transition-all duration-300">
-                            <i class="devicon-postgresql-plain text-2xl mb-2"></i>
-                            <div class="font-semibold">PostgreSQL</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cloud & Devops -->
-                <div class="fade-in stagger-delay-3">
-                    <h3 class="text-2xl font-semibold mb-6 text-center">Cloud & Devops</h3>
-                    <div class="space-y-4">
-                        <div
-                            class="skill-badge bg-orange-600 p-4 rounded-xl text-center cursor-pointer transition-all duration-300">
-                            <i class="fab fa-git-alt text-2xl mb-2"></i>
-                            <div class="font-semibold">Git</div>
-                        </div>
-                        <div
-                            class="skill-badge bg-blue-600 p-4 rounded-xl text-center cursor-pointer transition-all duration-300">
-                            <i class="fab fa-docker text-2xl mb-2"></i>
-                            <div class="font-semibold">Docker</div>
-                        </div>
-                        <div
-                            class="skill-badge bg-yellow-500 p-4 rounded-xl text-center cursor-pointer transition-all duration-300">
-                            <i class="fab fa-aws text-2xl mb-2"></i>
-                            <div class="font-semibold">AWS</div>
-                        </div>
-                        <div
-                            class="skill-badge bg-purple-600 p-4 rounded-xl text-center cursor-pointer transition-all duration-300">
-                            <i class="devicon-googlecloud-plain text-2xl mb-2"></i>
-                            <div class="font-semibold">GCP</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tools -->
-                <div class="fade-in stagger-delay-4">
-                    <h3 class="text-2xl font-semibold mb-6 text-center">Tools & Platforms</h3>
-                    <div class="space-y-4">
-                        <div
-                            class="skill-badge bg-blue-500 p-4 rounded-xl text-center cursor-pointer transition-all duration-300">
-                            <i class="far fa-window-maximize text-2xl mb-2"></i>
-                            <div class="font-semibold">GoHighLevel CRM</div>
-                        </div>
-                        <div
-                            class="skill-badge bg-green-500 p-4 rounded-xl text-center cursor-pointer transition-all duration-300">
-                            <i class="fas fa-sitemap text-2xl mb-2"></i>
-                            <div class="font-semibold">Pabbly / Zapier</div>
-                        </div>
-                        <div
-                            class="skill-badge bg-gray-600 p-4 rounded-xl text-center cursor-pointer transition-all duration-300">
-                            <i class="fas fa-headset text-2xl mb-2"></i>
-                            <div class="font-semibold">AI Agent</div>
-                        </div>
-                        <div
-                            class="skill-badge bg-fuchsia-600 p-4 rounded-xl text-center cursor-pointer transition-all duration-300">
-                            <i class="fab fa-linux text-2xl mb-2"></i>
-                            <div class="font-semibold">Linux</div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!-- Others -->
-            <div class="fade-in stagger-delay-4">
-                <h3 class="text-2xl font-semibold mb-6 mt-6 text-center">Others</h3>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <div
-                        class="skill-badge w-28 h-28 bg-blue-500 p-4 rounded-xl text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center">
-                        <i class="devicon-html5-plain text-xl mb-2"></i>
-
-                        <div class="font-semibold text-sm">HTML</div>
-                    </div>
-
-                    <div
-                        class="skill-badge w-28 h-28 bg-blue-500 p-4 rounded-xl text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center">
-                        <i class="fab fa-css3-alt text-2xl mb-2"></i>
-                        <div class="font-semibold text-sm">CSS</div>
-                    </div>
-
-                    <div
-                        class="skill-badge w-28 h-28 bg-blue-500 p-4 rounded-xl text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center">
-                        <i class="devicon-express-original text-xl mb-2"></i>
-                        <div class="font-semibold text-sm">Express.js</div>
-                    </div>
-
-                    <div
-                        class="skill-badge w-28 h-28 bg-blue-500 p-4 rounded-xl text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center">
-                        <i class="devicon-redux-original text-xl mb-2"></i>
-                        <div class="font-semibold text-sm">Redux</div>
-                    </div>
-
-                    <div
-                        class="skill-badge w-28 h-28 bg-blue-500 p-4 rounded-xl text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center">
-                        <i class="devicon-fastapi-plain text-xl mb-2"></i>
-                        <div class="font-semibold text-sm">FastAPI</div>
-                    </div>
-
-                    <div
-                        class="skill-badge w-28 h-28 bg-blue-500 p-4 rounded-xl text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center">
-                        <i class="fas fa-code text-xl mb-2"></i>
-                        <div class="font-semibold text-sm">RESTful APIs</div>
-                    </div>
-
-                    <div
-                        class="skill-badge w-28 h-28 bg-blue-500 p-4 rounded-xl text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center">
-                        <i class="devicon-pytest-plain  text-xl mb-2"></i>
-                        <div class="font-semibold text-sm">Pytest</div>
-                    </div>
-
-                    <div
-                        class="skill-badge w-28 h-28 bg-blue-500 p-4 rounded-xl text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center">
-                        <i class="devicon-flask-original text-xl mb-2"></i>
-                        <div class="font-semibold text-sm">Flask</div>
-                    </div>
-                </div>
-            </div>
+        <div class="exp-meta">
+          <span class="exp-badge" style="color:#00FF88;border-color:#00FF8840;background:#00FF8815">Sep 2023 – Present</span>
+          <div class="exp-location">Remote</div>
         </div>
-    </section>
+      </div>
+      <ul class="exp-points">
+        <li>Built a WebRTC-powered browser dialer integrated into a CRM platform, reducing lead response time by 30%.</li>
+        <li>Developed a Used Car Dealership platform (Digital Dealer) with inventory management, social campaigns, CRM pipelines, and analytics dashboards.</li>
+        <li>Implemented dynamic RFM analysis dashboards with cross-filtering and Recharts visualizations for industrial clients.</li>
+        <li>Integrated AI-powered calling bots for lead qualification, cutting manual follow-up effort by 40%.</li>
+        <li>Automated key business workflows — reducing manual data entry by 50% — using Pabbly, GoHighLevel, and custom integrations.</li>
+        <li>Built a call analysis system using transcripts and audio data to improve sales team performance.</li>
+      </ul>
+    </div>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">Featured Projects</h2>
-                <p class="text-xl text-gray-300">Some of my recent work</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Project 1 -->
-                <div class="project-card bg-gray-700 rounded-2xl overflow-hidden fade-in stagger-delay-1">
-                    <div
-                        class="project-image h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                        <i class="fas fa-car text-4xl text-white"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3">Used Car Module</h3>
-                        <p class="text-gray-300 mb-4">
-                            Full-stack solution for dealers, with CRM integration to streamline operations.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">React</span>
-                            <span class="bg-green-600 px-3 py-1 rounded-full text-sm">Node.js</span>
-                            <span class="bg-purple-600 px-3 py-1 rounded-full text-sm">MongoDB</span>
-                            <span class="bg-red-600 px-3 py-1 rounded-full text-sm">GCP</span>
-                        </div>
-                        <!-- <button class="w-full bg-blue-600 hover:bg-blue-700 py-2 rounded-lg transition-colors">
-                            View Project
-                        </button> -->
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card bg-gray-700 rounded-2xl overflow-hidden fade-in stagger-delay-2">
-                    <div
-                        class="project-image h-48 bg-gradient-to-br from-green-500 to-teal-600 flex items-center justify-center">
-                        <i class="fas fa-phone-volume text-4xl text-white"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3">WebRTC Dialer</h3>
-                        <p class="text-gray-300 mb-4">
-                        Real-time browser-to-phone dialer app with automated call data tracking.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">React</span>
-                            <span class="bg-yellow-600 px-3 py-1 rounded-full text-sm">Radix UI</span>
-                            <span class="bg-red-600 px-3 py-1 rounded-full text-sm">Redux</span>
-                            <span class="bg-green-600 px-3 py-1 rounded-full text-sm">Plivo-SDK</span>
-                        </div>
-                        <!-- <button class="w-full bg-green-600 hover:bg-green-700 py-2 rounded-lg transition-colors">
-                            View Project
-                        </button> -->
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card bg-gray-700 rounded-2xl overflow-hidden fade-in stagger-delay-3">
-                    <div
-                        class="project-image h-48 bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center">
-                        <i class="fas fa-chart-line text-4xl text-white"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-3">Sales Analytics Dashboard</h3>
-                        <p class="text-gray-300 mb-4">
-                            Dynamic dashboard for sales trend analysis and customer segmentation.
-                        </p>
-                        <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">React</span>
-                            <span class="bg-orange-600 px-3 py-1 rounded-full text-sm">Recharts</span>
-                            <span class="bg-green-600 px-3 py-1 rounded-full text-sm">Redux</span>
-                        </div>
-                        <!-- <button class="w-full bg-purple-600 hover:bg-purple-700 py-2 rounded-lg transition-colors">
-                            View Project
-                        </button> -->
-                    </div>
-                </div>
-            </div>
+    <!-- Turing -->
+    <div class="exp-card" style="--exp-color:#FF6B35">
+      <div class="exp-header">
+        <div>
+          <div class="exp-company" style="color:#FF6B35">Turing</div>
+          <div class="exp-role">LLM Trainer – Contract</div>
         </div>
-    </section>
-
-    <!-- Experience Timeline -->
-    <section id="experience" class="py-20 bg-gray-900">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">Experience</h2>
-                <p class="text-xl text-gray-300">My professional journey</p>
-            </div>
-
-            <div class="relative">
-                <!-- Timeline Line -->
-                <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-blue-600"></div>
-
-                <!-- Timeline Items -->
-                <div class="space-y-12">
-                    <!-- Experience 1 -->
-                    <div class="timeline-item relative pl-20">
-                        <div class="absolute left-6 w-4 h-4 bg-blue-600 rounded-full border-4 border-gray-900"></div>
-                        <div class="bg-gray-800 p-6 rounded-2xl">
-                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                <h3 class="text-xl font-semibold">Development Lead</h3>
-                                <span class="text-blue-400 font-medium">Sept 2023 - Present</span>
-                            </div>
-                            <h4 class="text-lg text-gray-300 mb-3">JumpStartCXO</h4>
-                            <p class="text-gray-400 mb-4">
-                                Led the development of a suite of solutions, including a WebRTC dialer and a sales analytics tool. Boosted conversion
-                                rates by 25% by integrating AI tools and reduced manual data tracking by 50% with automation workflows.
-                            </p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">React</span>
-                                <span class="bg-amber-600 px-3 py-1 rounded-full text-sm">Python</span>
-                                <span class="bg-green-600 px-3 py-1 rounded-full text-sm">Node.js</span>
-                                <span class="bg-yellow-600 px-3 py-1 rounded-full text-sm">GCP</span>
-                                <span class="bg-purple-600 px-3 py-1 rounded-full text-sm">GoHighLevel</span>
-                                <span class="bg-teal-600 px-3 py-1 rounded-full text-sm">Automation Workflows</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Experience 2 -->
-                    <div class="timeline-item relative pl-20">
-                        <div class="absolute left-6 w-4 h-4 bg-blue-600 rounded-full border-4 border-gray-900"></div>
-                        <div class="bg-gray-800 p-6 rounded-2xl">
-                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                <h3 class="text-xl font-semibold">Software Engineer</h3>
-                                <span class="text-blue-400 font-medium">Sept 2021 - Aug 2023</span>
-                            </div>
-                            <h4 class="text-lg text-gray-300 mb-3">
-                                Borderfree Technologies
-                            </h4>
-                            <p class="text-gray-400 mb-4">
-                                Developed and enhanced React-based applications for B2C platforms. Doubled customer engagement through personalized
-                                experiences and increased purchase conversion rates by 30%.
-                            </p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">React.js</span>
-                                <span class="bg-green-600 px-3 py-1 rounded-full text-sm">Go</span>
-                                <span class="bg-gray-600 px-3 py-1 rounded-full text-sm">AWS</span>
-                                <span class="bg-indigo-600 px-3 py-1 rounded-full text-sm">Material UI</span>
-                                <span class="bg-rose-600 px-3 py-1 rounded-full text-sm">Redux</span>
-                                <span class="bg-purple-600 px-3 py-1 rounded-full text-sm">Python</span>
-                                <span class="bg-sky-600 px-3 py-1 rounded-full text-sm">Video.js</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Experience 3 -->
-                    <div class="timeline-item relative pl-20">
-                        <div class="absolute left-6 w-4 h-4 bg-blue-600 rounded-full border-4 border-gray-900"></div>
-                        <div class="bg-gray-800 p-6 rounded-2xl">
-                            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                                <h3 class="text-xl font-semibold">Junior Developer</h3>
-                                <span class="text-blue-400 font-medium">Jan 2021 - Aug 2021</span>
-                            </div>
-                            <h4 class="text-lg text-gray-300 mb-3">Inkaleido Agency</h4>
-                            <p class="text-gray-400 mb-4">
-                                Built responsive websites and e-commerce platforms for small businesses. Integrated third-party APIs for workflow
-                                automation and gained foundational experience in modern web development.
-                            </p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="bg-yellow-600 px-3 py-1 rounded-full text-sm">JavaScript</span>
-                                <span class="bg-blue-600 px-3 py-1 rounded-full text-sm">HTML/CSS</span>
-                                <span class="bg-green-600 px-3 py-1 rounded-full text-sm">jQuery</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="exp-meta">
+          <span class="exp-badge" style="color:#FF6B35;border-color:#FF6B3540;background:#FF6B3515">Multiple Engagements</span>
+          <div class="exp-location">Remote</div>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-800">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">
-                    Let's Work Together
-                </h2>
-                <p class="text-xl text-gray-300">Ready to bring your ideas to life</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="fade-in stagger-delay-1">
-                    <h3 class="text-2xl font-semibold mb-6">Get In Touch</h3>
-                    <div class="space-y-4">
-                        <a href="mailto:avaishnav6292@gmail.com">
-                            <div class="flex items-center space-x-4">
-                                <i class="fas fa-envelope text-blue-400 text-xl"></i>
-                                <span>avaishnav6292@gmail.com</span>
-                            </div>
-                        </a>
-                        <div class="flex items-center space-x-4">
-                            <i class="fas fa-phone text-blue-400 text-xl"></i>
-                            <span>+917568493641</span>
-                        </div>
-                        <div class="flex items-center space-x-4">
-                            <i class="fas fa-map-marker-alt text-blue-400 text-xl"></i>
-                            <span>Jodhpur, Rajasthan, INDIA</span>
-                        </div>
-                    </div>
-
-                    <div class="mt-8">
-                        <h4 class="text-lg font-semibold mb-4">Follow Me</h4>
-                        <div class="flex space-x-4">
-                            <a href="https://www.github.com/avaishnav6292" target="_blank" class="text-gray-400 hover:text-white text-2xl transition-colors">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="https://www.linkedin.com/in/avaishnav6292" target="_blank" class="text-gray-400 hover:text-white text-2xl transition-colors">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="fade-in stagger-delay-2">
-                    <form id="contact-form" class="space-y-6" action="https://formspree.io/f/xpwlepav"
-  method="POST">
-                        <div>
-                            <label for="name" class="block text-sm font-medium mb-2">Name</label>
-                            <input type="text" name="name"
-                                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-                        </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium mb-2">Email</label>
-                            <input type="email" name="email"
-                                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" />
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium mb-2">Message</label>
-                            <textarea rows="4" name="message"
-                                class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
-                        </div>
-                        <button type="submit" id="submit-button"
-                            class="w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-lg font-semibold transition-colors">
-                            Send Message
-                        </button>
-                        <div id="form-status"></div>
-                    </form>
-                </div>
-            </div>
+      </div>
+      <div class="exp-engagements">
+        <div class="eng-label">Engagements</div>
+        <div class="eng-tags">
+          <span class="eng-tag" style="color:#FF6B35;border-color:#FF6B3530;background:#FF6B3510">CUA Trainer · Dec 2025 – Jan 2026</span>
+          <span class="eng-tag" style="color:#FF6B35;border-color:#FF6B3530;background:#FF6B3510">AI Workflow Trainer · Apr 2026 – May 2026</span>
         </div>
-    </section>
+      </div>
+      <ul class="exp-points">
+        <li>Created structured step-by-step demonstrations to train LLMs on real-world software and development workflows.</li>
+        <li>Evaluated agent behavior, refined prompts, and improved model reasoning in system interaction tasks.</li>
+      </ul>
+    </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 py-8 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center text-gray-400">
-                <p>&copy; 2025 Ashutosh Vaishnav. All rights reserved.</p>
-            </div>
+    <!-- Borderfree -->
+    <div class="exp-card" style="--exp-color:#7B61FF">
+      <div class="exp-header">
+        <div>
+          <div class="exp-company" style="color:#7B61FF">Borderfree Technologies</div>
+          <div class="exp-role">Software Engineer</div>
         </div>
-    </footer>
+        <div class="exp-meta">
+          <span class="exp-badge" style="color:#7B61FF;border-color:#7B61FF40;background:#7B61FF15">Sep 2021 – Aug 2023</span>
+          <div class="exp-location">Remote</div>
+        </div>
+      </div>
+      <ul class="exp-points">
+        <li>Built dynamic channel pages for brands and creators to showcase live shows with Video.js and Redux.</li>
+        <li>Revamped product purchasing UX embedded in live streams for a client with 700+ brands — boosted conversion by 30%.</li>
+        <li>Led development of core platform features including auth, dashboards, and product data flows.</li>
+        <li>Built scalable backend infrastructure on AWS using DynamoDB, SES, Lambda, and S3.</li>
+      </ul>
+    </div>
 
-    <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-            anchor.addEventListener("click", function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute("href"));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start",
-                    });
-                }
-            });
-        });
+    <!-- Inkaleido -->
+    <div class="exp-card" style="--exp-color:#FFD166">
+      <div class="exp-header">
+        <div>
+          <div class="exp-company" style="color:#FFD166">Inkaleido Agency</div>
+          <div class="exp-role">Junior Developer</div>
+        </div>
+        <div class="exp-meta">
+          <span class="exp-badge" style="color:#FFD166;border-color:#FFD16640;background:#FFD16615">Jan 2021 – Aug 2021</span>
+          <div class="exp-location">Remote</div>
+        </div>
+      </div>
+      <ul class="exp-points">
+        <li>Developed responsive websites and custom e-commerce platforms for SMBs.</li>
+        <li>Integrated third-party APIs for workflow automation across SaaS platforms.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px",
-        };
+<!-- PROJECTS -->
+<section id="projects" class="section-alt">
+  <div class="section-inner">
+    <div class="section-label">03 / Projects</div>
+    <h2 class="section-title">Things I've Shipped</h2>
+    <div class="projects-grid">
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                }
-            });
-        }, observerOptions);
+      <!-- Digital Dealer -->
+      <div class="project-card" style="--pc:#00FF88" onmouseenter="this.style.borderColor='#00FF8860';this.style.boxShadow='0 12px 40px #00FF8820'" onmouseleave="this.style.borderColor='#ffffff15';this.style.boxShadow='none'">
+        <div class="project-top">
+          <div class="project-icon">🚗</div>
+          <div>
+            <div class="project-name" style="color:#00FF88">Digital Dealer</div>
+            <div class="project-tagline">All-in-one platform for used car dealerships</div>
+          </div>
+        </div>
+        <p class="project-desc">A full-featured dealership management platform that handles inventory tracking, social media campaign scheduling, CRM lead pipelines, and multi-dimensional analytics reporting — all in one dashboard.</p>
+        <div class="pill-label">Key Features</div>
+        <div class="pills">
+          <span class="pill-feature" style="color:#00FF88;border-color:#00FF8830;background:#00FF8815">Inventory management</span>
+          <span class="pill-feature" style="color:#00FF88;border-color:#00FF8830;background:#00FF8815">Social media campaigns</span>
+          <span class="pill-feature" style="color:#00FF88;border-color:#00FF8830;background:#00FF8815">CRM pipeline</span>
+          <span class="pill-feature" style="color:#00FF88;border-color:#00FF8830;background:#00FF8815">Analytics &amp; reporting</span>
+        </div>
+        <div class="pill-label">Tech Stack</div>
+        <div class="pills">
+          <span class="pill-tech">Next.js</span><span class="pill-tech">TypeScript</span><span class="pill-tech">Firebase</span>
+          <span class="pill-tech">Cloud Run</span><span class="pill-tech">Cloud Storage</span><span class="pill-tech">Node.js</span>
+          <span class="pill-tech">Express.js</span><span class="pill-tech">Tailwind CSS</span>
+        </div>
+      </div>
 
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        }
+      <!-- Dialer -->
+      <div class="project-card" onmouseenter="this.style.borderColor='#7B61FF60';this.style.boxShadow='0 12px 40px #7B61FF20'" onmouseleave="this.style.borderColor='#ffffff15';this.style.boxShadow='none'">
+        <div class="project-top">
+          <div class="project-icon">📞</div>
+          <div>
+            <div class="project-name" style="color:#7B61FF">Dialer</div>
+            <div class="project-tagline">CRM-integrated smart calling system</div>
+          </div>
+        </div>
+        <p class="project-desc">A browser-based dialer powered by Plivo SDK that lets sales reps call CRM leads directly. Post-call, it automatically triggers workflows to log call details, fetch recordings, run analysis, and update the CRM — zero manual entry.</p>
+        <div class="pill-label">Key Features</div>
+        <div class="pills">
+          <span class="pill-feature" style="color:#7B61FF;border-color:#7B61FF30;background:#7B61FF15">Browser-based calling</span>
+          <span class="pill-feature" style="color:#7B61FF;border-color:#7B61FF30;background:#7B61FF15">Auto CRM updates</span>
+          <span class="pill-feature" style="color:#7B61FF;border-color:#7B61FF30;background:#7B61FF15">Call recording &amp; analysis</span>
+          <span class="pill-feature" style="color:#7B61FF;border-color:#7B61FF30;background:#7B61FF15">Workflow automation</span>
+        </div>
+        <div class="pill-label">Tech Stack</div>
+        <div class="pills">
+          <span class="pill-tech">React.js</span><span class="pill-tech">Node.js</span><span class="pill-tech">Plivo SDK</span>
+          <span class="pill-tech">MUI</span><span class="pill-tech">Pabbly Workflows</span>
+        </div>
+      </div>
 
-        // Observe all fade-in and timeline elements
-        document.querySelectorAll(".fade-in, .timeline-item").forEach((el) => {
-            observer.observe(el);
-        });
+    </div>
+  </div>
+</section>
 
-        // Typing animation
-        const typingText = document.querySelector('.typing-animation');
-        const texts = [
-          'Full-Stack Developer & Tech Innovator',
-          'Product-Focused Engineer & Solutions Architect',
-          'Software Developer & Automation Specialist'
-        ];
-        let textIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
+<!-- AUTOMATIONS -->
+<section id="automations">
+  <div class="section-inner">
+    <div class="section-label">04 / Automation Workflows</div>
+    <h2 class="section-title">Workflows I've Built</h2>
+    <p style="font-size:15px;color:#666;margin-bottom:32px;max-width:560px">Real automation use-cases I've shipped. Click each to see the flow.</p>
+    <div id="automations-list"></div>
+  </div>
+</section>
 
-        function typeWriter() {
-            const currentText = texts[textIndex];
+<!-- SKILLS -->
+<section id="skills" class="section-alt">
+  <div class="section-inner">
+    <div class="section-label">05 / Skills</div>
+    <h2 class="section-title">My Toolkit</h2>
+    <div class="skills-grid" id="skills-grid"></div>
+  </div>
+</section>
 
-            if (isDeleting) {
-                typingText.textContent = currentText.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typingText.textContent = currentText.substring(0, charIndex + 1);
-                charIndex++;
-            }
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">06 / Contact</div>
+    <h2 class="section-title">Let's Build Something</h2>
+    <div class="contact-grid">
+      <div>
+        <p class="contact-desc">Whether it's a full-stack product, a complex automation workflow, or just a quick chat about tech — my inbox is open.</p>
+        <div class="email-card" onclick="copyEmail(this)">
+          <div>
+            <div class="email-label">Email</div>
+            <div class="email-val">avaishnav6292@gmail.com</div>
+          </div>
+          <span class="copy-hint" id="copy-hint">Click to copy</span>
+        </div>
+        <div class="social-links">
+          <a class="social-link" href="https://www.linkedin.com/in/avaishnav6292" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="social-link" href="https://github.com/avaishnav6292" target="_blank" rel="noopener">GitHub</a>
+          <a class="social-link" href="https://www.hackerrank.com/avaishnav6292" target="_blank" rel="noopener">HackerRank</a>
+          <a class="social-link" href="https://www.leetcode.com/ashutoshv6292" target="_blank" rel="noopener">LeetCode</a>
+        </div>
+      </div>
+      <div class="avail-card">
+        <span class="avail-rocket">🚀</span>
+        <div class="avail-title">Currently Available</div>
+        <div class="avail-sub">Open to freelance projects,<br>consulting, and collaborations.</div>
+        <div class="avail-views" id="avail-views"></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-            if (!isDeleting && charIndex === currentText.length) {
-                setTimeout(() => isDeleting = true, 2000);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % texts.length;
-            }
+<footer>
+  <span class="footer-copy">Built by Ashutosh Vaishnav · <span id="year"></span></span>
+  <span class="footer-views" id="footer-views"></span>
+</footer>
 
-            const speed = isDeleting ? 50 : 100;
-            setTimeout(typeWriter, speed);
-        }
-
-        // Start typing animation after page load
-        setTimeout(typeWriter, 1000);
-
-        // Project card click handlers
-        document.querySelectorAll(".project-card button").forEach((button) => {
-            button.addEventListener("click", function () {
-                const projectTitle =
-                    this.closest(".project-card").querySelector("h3").textContent;
-                alert(
-                    `Opening ${projectTitle}... (This would navigate to the project details)`
-                );
-            });
-        });
-
-        // Hero section button handlers
-        document.querySelector('button:contains("View My Work")') &&
-            document.querySelector("button").addEventListener("click", function () {
-                document.querySelector("#projects").scrollIntoView({
-                    behavior: "smooth",
-                });
-            });
-
-        // Add some interactive hover effects
-        document.querySelectorAll(".skill-badge").forEach((badge) => {
-            badge.addEventListener("mouseenter", function () {
-                this.style.transform = "scale(1.1) rotate(2deg)";
-            });
-
-            badge.addEventListener("mouseleave", function () {
-                this.style.transform = "scale(1) rotate(0deg)";
-            });
-        });
-    </script>
-    <script>
-        (function () {
-            function c() {
-                var b = a.contentDocument || a.contentWindow.document;
-                if (b) {
-                    var d = b.createElement("script");
-                    d.innerHTML =
-                        "window.__CF$cv$params={r:'96c173ebc6933a46',t:'MTc1NDY4MTY4NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
-                    b.getElementsByTagName("head")[0].appendChild(d);
-                }
-            }
-            if (document.body) {
-                var a = document.createElement("iframe");
-                a.height = 1;
-                a.width = 1;
-                a.style.position = "absolute";
-                a.style.top = 0;
-                a.style.left = 0;
-                a.style.border = "none";
-                a.style.visibility = "hidden";
-                document.body.appendChild(a);
-                if ("loading" !== document.readyState) c();
-                else if (window.addEventListener)
-                    document.addEventListener("DOMContentLoaded", c);
-                else {
-                    var e = document.onreadystatechange || function () { };
-                    document.onreadystatechange = function (b) {
-                        e(b);
-                        "loading" !== document.readyState &&
-                            ((document.onreadystatechange = e), c());
-                    };
-                }
-            }
-        })();
-    </script>
-   
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const backdrop = document.querySelector('.backdrop');
-        const icons = [
-            'devicon-javascript-plain', 'devicon-typescript-plain',
-            'devicon-react-original', 'devicon-nextjs-plain',
-            'devicon-tailwindcss-plain', 'devicon-html5-plain',
-            'devicon-css3-plain', 'devicon-sass-original',
-            'devicon-git-plain', 'devicon-github-original',
-            'devicon-nodejs-plain', 'devicon-firebase-plain',
-            'devicon-mysql-plain', 'devicon-mongodb-plain',
-            'devicon-python-plain', 'devicon-cplusplus-plain'
-        ];
+  // ── DATA ──────────────────────────────────────────────────────────────────
+  const AUTOMATIONS = [
+    { id:1, title:"CRM Lead → Instant Auto-Call", icon:"⚡", color:"#00FF88",
+      description:"When a new lead lands in the CRM, a call is automatically triggered, waited for, then the result is fetched and synced back — all without human intervention.",
+      flow:["Lead Created in CRM","Trigger Call via Dialer","Wait for Call End","Fetch Call Details","Update CRM Record"] },
+    { id:2, title:"Google Sheet → WhatsApp Notification", icon:"💬", color:"#FF6B35",
+      description:"Any update to a tracked sheet row fires a formatted WhatsApp message to the right team member in real time.",
+      flow:["Sheet Row Edited","Webhook Triggered","Format Message","Send WhatsApp via API"] },
+    { id:3, title:"Form Submission → Full Sales Funnel", icon:"🎯", color:"#7B61FF",
+      description:"A single form fill auto-adds the contact to CRM, assigns a rep, sends a welcome email, schedules a follow-up, and logs everything in a tracking sheet.",
+      flow:["Form Submitted","Create CRM Contact","Assign Sales Rep","Send Welcome Email","Log in Tracker Sheet"] },
+    { id:4, title:"Scheduled Report → Email Digest", icon:"📊", color:"#FFD166",
+      description:"Every morning, data is pulled from multiple sources, aggregated, formatted, and emailed as a clean report — fully automated on a schedule.",
+      flow:["Cron Schedule","Pull from Sources","Aggregate & Format","Email Report"] },
+    { id:5, title:"AI Call Transcript → Insight Summary", icon:"🤖", color:"#FF61A0",
+      description:"Call recordings are transcribed, sent to an AI for analysis, and the key insights — sentiment, intent, next steps — are pushed back into the CRM deal record.",
+      flow:["Call Recorded","Transcribe Audio","AI Analysis","Extract Insights","Update CRM Deal"] },
+  ];
 
-        // Deflection configuration
-        const deflectionRadius = 150; // Pixels
-        const deflectionForce = 150; // Pixels
+  const SKILLS = {
+    "Languages": ["JavaScript","TypeScript","Python","C++","SQL"],
+    "Frontend": ["React.js","Next.js","Tailwind CSS","Redux","HTML/CSS"],
+    "Backend": ["Node.js","Express.js","Flask","FastAPI"],
+    "Databases": ["MongoDB","PostgreSQL","DynamoDB","MySQL","Firebase"],
+    "Cloud": ["AWS (S3, SES, Lambda)","Google Cloud","Firebase","Cloud Run"],
+    "Automation": ["Pabbly","n8n","Make","Zapier","GoHighLevel"],
+    "APIs & Tools": ["Google Workspace APIs","Plivo SDK","WebRTC","RESTful APIs","Git"],
+  };
 
-        function createFallingIcon() {
-            const iconContainer = document.createElement('div');
-            iconContainer.className = 'icon-container';
+  // ── VIEW COUNTER ──────────────────────────────────────────────────────────
+  const STORAGE_KEY = "av_portfolio_views";
+  const stored = localStorage.getItem(STORAGE_KEY);
+  const views = stored ? parseInt(stored, 10) + 1 : 1;
+  localStorage.setItem(STORAGE_KEY, views.toString());
+  const viewText = `👁 ${views.toLocaleString()} views`;
+  document.getElementById("nav-views").textContent = viewText;
+  document.getElementById("footer-views").textContent = viewText;
+  document.getElementById("avail-views").textContent = `${views.toLocaleString()} people have visited this portfolio`;
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-            const randomIconClass = icons[Math.floor(Math.random() * icons.length)];
-            iconContainer.innerHTML = `<i class="${randomIconClass} colored"></i>`;
+  // ── EASTER EGG ────────────────────────────────────────────────────────────
+  let clickCount = 0;
+  function handleNameClick() {
+    clickCount++;
+    if (clickCount >= 5) {
+      document.getElementById("easter-egg").classList.add("show");
+      clickCount = 0;
+    }
+  }
+  document.getElementById("nav-logo").addEventListener("click", handleNameClick);
+  document.getElementById("hero-name").addEventListener("click", handleNameClick);
+  document.getElementById("easter-egg").addEventListener("click", function() {
+    this.classList.remove("show");
+  });
 
-            const startPosition = Math.random() * 100;
-            const animationDuration = 10 + Math.random() * 10;
-            const animationDelay = -Math.random() * animationDuration;
+  // ── TERMINAL TYPING ───────────────────────────────────────────────────────
+  const termLines = [
+    { text: "$ whoami", color: "#00FF88" },
+    { text: "Ashutosh Vaishnav", color: "#fff" },
+    { text: "$ cat role.txt", color: "#00FF88" },
+    { text: "Full Stack Developer + Automation Engineer", color: "#aaa" },
+    { text: "$ echo $SUPERPOWER", color: "#00FF88" },
+    { text: "Making apps talk to each other 🤝", color: "#fff" },
+    { text: "$ ./status.sh", color: "#00FF88" },
+    { text: "Available for work · Open to collabs", color: "#aaa" },
+  ];
+  const termOutput = document.getElementById("terminal-output");
+  let lineIdx = 0, charIdx = 0;
+  let currentSpan = null;
 
-            iconContainer.style.left = `${startPosition}vw`;
-            iconContainer.style.animationDuration = `${animationDuration}s`;
-            iconContainer.style.animationDelay = `${animationDelay}s`;
+  function typeNext() {
+    if (lineIdx >= termLines.length) return;
+    const line = termLines[lineIdx];
+    if (charIdx === 0) {
+      currentSpan = document.createElement("span");
+      currentSpan.className = "term-line";
+      currentSpan.style.color = line.color;
+      currentSpan.innerHTML = lineIdx % 2 === 0 ? '<span style="color:#555">❯ </span>' : '  ';
+      termOutput.appendChild(currentSpan);
+    }
+    if (charIdx < line.text.length) {
+      const txt = currentSpan.innerHTML;
+      currentSpan.innerHTML = txt + line.text[charIdx];
+      charIdx++;
+      setTimeout(typeNext, 35);
+    } else {
+      lineIdx++; charIdx = 0;
+      setTimeout(typeNext, 300);
+    }
+  }
+  setTimeout(typeNext, 500);
 
-            backdrop.appendChild(iconContainer);
-        }
+  // ── AUTOMATIONS ───────────────────────────────────────────────────────────
+  let openAuto = null;
+  const autoList = document.getElementById("automations-list");
 
-        for (let i = 0; i < 500; i++) {
-            createFallingIcon();
-        }
+  function renderAutomations() {
+    autoList.innerHTML = "";
+    AUTOMATIONS.forEach(item => {
+      const isOpen = openAuto === item.id;
+      const card = document.createElement("div");
+      card.className = "auto-card";
+      card.style.borderColor = isOpen ? item.color + "60" : "#ffffff15";
 
-        // START OF CHANGE
-        // Event listener for mouse movement to deflect icons
-        document.addEventListener('mousemove', (event) => {
-            const mouseX = event.clientX;
-            const mouseY = event.clientY;
-
-            const iconContainers = document.querySelectorAll('.icon-container');
-            iconContainers.forEach(container => {
-                const icon = container.querySelector('i');
-                if (!icon) return; // Safely exit if no icon is found
-
-                const rect = icon.getBoundingClientRect();
-                const iconX = rect.left + rect.width / 2;
-                const iconY = rect.top + rect.height / 2;
-
-                const dx = iconX - mouseX;
-                const dy = iconY - mouseY;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < deflectionRadius) {
-                    const angle = Math.atan2(dy, dx);
-                    const pushX = Math.cos(angle) * deflectionForce;
-                    const pushY = Math.sin(angle) * deflectionForce;
-                    icon.style.transform = `translate(${pushX}px, ${pushY}px)`;
-                } else {
-                    // Reset the transform if the cursor is not near
-                    icon.style.transform = 'translate(0, 0)';
-                }
-            });
+      let flowHTML = "";
+      if (isOpen) {
+        flowHTML = '<div class="auto-flow">';
+        item.flow.forEach((step, i) => {
+          flowHTML += `<span class="flow-step" style="color:${item.color};border-color:${item.color}40;background:${item.color}15">${step}</span>`;
+          if (i < item.flow.length - 1) flowHTML += `<span class="flow-arrow" style="color:${item.color}">→</span>`;
         });
-        // END OF CHANGE
+        flowHTML += "</div>";
+      }
+
+      card.innerHTML = `
+        <div class="auto-header">
+          <div class="auto-left">
+            <span class="auto-icon">${item.icon}</span>
+            <div>
+              <div class="auto-title">${item.title}</div>
+              ${isOpen ? `<div class="auto-desc">${item.description}</div>` : ""}
+            </div>
+          </div>
+          <span class="auto-toggle" style="color:${item.color};transform:${isOpen ? "rotate(45deg)" : "none"}">+</span>
+        </div>
+        ${flowHTML}
+      `;
+      card.addEventListener("click", () => {
+        openAuto = openAuto === item.id ? null : item.id;
+        renderAutomations();
+      });
+      autoList.appendChild(card);
     });
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const form = document.getElementById('contact-form');
-        const formStatus = document.getElementById('form-status');
-        const submitButton = document.getElementById('submit-button');
+  }
+  renderAutomations();
 
-        form.addEventListener('submit', async (event) => {
-            // Prevent the default form submission (which causes the redirection)
-            event.preventDefault();
+  // ── SKILLS ────────────────────────────────────────────────────────────────
+  const skillsGrid = document.getElementById("skills-grid");
+  Object.entries(SKILLS).forEach(([cat, items]) => {
+    const div = document.createElement("div");
+    div.className = "skill-cat";
+    div.innerHTML = `<div class="skill-cat-label">${cat}</div><div class="skill-pills">${items.map(s => `<span class="skill-pill">${s}</span>`).join("")}</div>`;
+    skillsGrid.appendChild(div);
+  });
 
-            // Create a FormData object from the form
-            const data = new FormData(event.target);
-
-            // Disable the button and show a loading state
-            submitButton.disabled = true;
-            submitButton.textContent = 'Sending...';
-
-            try {
-                // Use the fetch API to send the data to Formspree asynchronously
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: data,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-
-                if (response.ok) {
-                    formStatus.textContent = 'Thanks for your message! I\'ll get back to you shortly.';
-                    formStatus.className = 'success';
-                    form.reset(); // Clear the form fields
-                } else {
-                    const responseData = await response.json();
-                    if (responseData.errors) {
-                        formStatus.textContent = responseData.errors.map(error => error.message).join(', ');
-                    } else {
-                        formStatus.textContent = 'Oops! There was a problem submitting your form.';
-                    }
-                    formStatus.className = 'error';
-                }
-            } catch (error) {
-                console.error(error);
-                formStatus.textContent = 'Oops! Something went wrong.';
-                formStatus.className = 'error';
-            } finally {
-                // Re-enable the button after the request is complete
-                submitButton.disabled = false;
-                submitButton.textContent = 'Send';
-            }
-        });
+  // ── COPY EMAIL ────────────────────────────────────────────────────────────
+  function copyEmail(card) {
+    navigator.clipboard.writeText("avaishnav6292@gmail.com").then(() => {
+      const hint = document.getElementById("copy-hint");
+      hint.textContent = "✓ Copied!";
+      hint.style.color = "#00FF88";
+      setTimeout(() => { hint.textContent = "Click to copy"; hint.style.color = "#555"; }, 2000);
     });
+  }
+
+  // ── PARTICLE CANVAS ───────────────────────────────────────────────────────
+  const canvas = document.getElementById("particle-canvas");
+  const ctx = canvas.getContext("2d");
+  const particles = [];
+
+  function resizeCanvas() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+
+  for (let i = 0; i < 60; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.5 + 0.5,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      alpha: Math.random() * 0.5 + 0.1,
+    });
+  }
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const W = canvas.width, H = canvas.height;
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0,255,136,${p.alpha})`;
+      ctx.fill();
+    });
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const d = Math.sqrt(dx*dx + dy*dy);
+        if (d < 100) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(0,255,136,${0.08*(1-d/100)})`;
+          ctx.lineWidth = 0.5;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
 </script>
-
-
-
 </body>
-
 </html>
