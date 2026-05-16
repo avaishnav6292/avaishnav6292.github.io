@@ -1,230 +1,480 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ashutosh Vaishnav – Full Stack Developer & Automation Engineer</title>
-  <meta name="description" content="Portfolio of Ashutosh Vaishnav – Full Stack Developer and Automation Engineer with 5+ years of experience." />
-  <meta property="og:title" content="Ashutosh Vaishnav – Developer & Automation Engineer" />
-  <meta property="og:description" content="Full Stack Developer & Automation Engineer. I build products that scale and workflows that run themselves." />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ashutosh Vaishnav — Full Stack Developer & Automation Engineer</title>
+  <meta name="description" content="Ashutosh Vaishnav — Full Stack Developer & Automation Engineer. Building products that scale and workflows that run themselves."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,300&family=Barlow:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: #060a0f;
-      color: #e0e0e0;
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      overflow-x: hidden;
+    :root{
+      --red:#C0392B;--red-dk:#8B1A0E;--red-lt:#E74C3C;
+      --white:#FFFFFF;--off:#E8E4DC;--grey:#A0A0A0;--grey-dk:#555;
+      --bg:#080808;--bg2:#101010;--bg3:#141414;--line:rgba(255,255,255,0.06);
     }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-    @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
-    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-    @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
-    ::selection { background: #00FF8830; }
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: #060a0f; }
-    ::-webkit-scrollbar-thumb { background: #00FF8840; border-radius: 2px; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:#fff;font-family:'Barlow',sans-serif;overflow-x:hidden}
+    ::selection{background:var(--red);color:#fff}
+    ::-webkit-scrollbar{width:3px}
+    ::-webkit-scrollbar-track{background:#000}
+    ::-webkit-scrollbar-thumb{background:var(--red)}
 
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(6,10,15,0.92); backdrop-filter: blur(12px);
-      border-bottom: 1px solid #ffffff0d;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5vw; height: 60px;
-    }
-    .nav-logo {
-      font-family: monospace; font-weight: 700; font-size: 18px;
-      color: #00FF88; letter-spacing: 2px; cursor: pointer; user-select: none;
-    }
-    .nav-links { display: flex; gap: 28px; align-items: center; }
-    .nav-link {
-      background: none; border: none; color: #aaa; font-size: 13px;
-      cursor: pointer; font-family: monospace; letter-spacing: 1px;
-      padding: 4px 0; transition: color 0.2s; text-decoration: none;
-    }
-    .nav-link:hover { color: #00FF88; }
-    .nav-views { font-family: monospace; font-size: 11px; color: #555; border-left: 1px solid #ffffff10; padding-left: 16px; }
+    @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    @keyframes scandown{0%{top:-10%}100%{top:110%}}
+    @keyframes buildrise{from{opacity:0;transform:translateY(50px)}to{opacity:1;transform:none}}
+    @keyframes treegrow{from{opacity:0;transform:scaleY(0);transform-origin:bottom center}to{opacity:1;transform:scaleY(1)}}
+    @keyframes titlein{from{opacity:0;transform:translateX(-24px)}to{opacity:1;transform:none}}
+    @keyframes debox{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+    @keyframes spotlight{0%,100%{opacity:.28}50%{opacity:.5}}
 
-    /* HERO */
-    #hero {
-      position: relative; min-height: 100vh; display: flex;
-      align-items: center; padding: 0 5vw; overflow: hidden;
+    /* ── NAV ─────────────────────────────────────────── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:300;
+      height:58px;display:flex;align-items:center;justify-content:space-between;
+      padding:0 5vw;
+      background:rgba(4,4,4,0.96);
+      border-bottom:1.5px solid rgba(192,57,43,0.5);
+      backdrop-filter:blur(8px);
     }
-    #particle-canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.6; pointer-events: none; }
-    .hero-inner { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; width: 100%; padding-top: 60px; }
-    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-    .hero-left { animation: fadeUp 0.8s ease both; }
-    .hero-right { animation: fadeUp 0.8s 0.2s ease both; }
-    .badge {
-      display: inline-block; border-radius: 20px;
-      padding: 4px 14px; font-size: 12px; font-family: monospace;
+    .nav-brand{display:flex;align-items:center;gap:0;cursor:pointer;user-select:none}
+    .nb-main{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:4px;color:#fff}
+    .nb-de{
+      font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:3px;
+      background:var(--red);color:#fff;padding:2px 7px;margin:0 5px;
     }
-    .badge-green { background: #00FF8815; border: 1px solid #00FF8840; color: #00FF88; }
-    h1.hero-name {
-      font-family: monospace; font-size: 52px; font-weight: 900; color: #fff;
-      line-height: 1.1; margin: 16px 0; letter-spacing: -1px; cursor: pointer;
+    .nav-links{display:flex;gap:26px;align-items:center}
+    .nav-link{
+      font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:3px;
+      text-transform:uppercase;color:#666;text-decoration:none;background:none;border:none;
+      cursor:pointer;transition:color .2s;border-bottom:1px solid transparent;padding:2px 0;
     }
-    h1.hero-name span { color: #00FF88; }
-    .hero-desc { font-size: 16px; color: #888; line-height: 1.7; margin-bottom: 28px; }
-    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn-primary {
-      background: #00FF88; color: #000; border: none; border-radius: 8px;
-      padding: 12px 24px; font-size: 14px; font-weight: 700; cursor: pointer;
-      font-family: monospace; letter-spacing: 1px; transition: all 0.2s; text-decoration: none;
-      display: inline-block;
+    .nav-link:hover{color:#fff;border-bottom-color:var(--red)}
+    .nav-views{
+      font-family:'Barlow Condensed',sans-serif;font-size:11px;
+      letter-spacing:2px;color:var(--red);border-left:1px solid rgba(255,255,255,.08);padding-left:16px;
     }
-    .btn-primary:hover { background: #00cc6a; }
-    .btn-secondary {
-      background: transparent; color: #fff; border: 1px solid #ffffff20; border-radius: 8px;
-      padding: 12px 24px; font-size: 14px; cursor: pointer; font-family: monospace;
-      transition: all 0.2s; text-decoration: none; display: inline-block;
-    }
-    .btn-secondary:hover { border-color: #ffffff40; }
-    .hero-stats { display: flex; gap: 24px; margin-top: 32px; }
-    .stat-num { font-family: monospace; font-size: 22px; font-weight: 700; color: #00FF88; }
-    .stat-sub { font-size: 11px; color: #555; margin-top: 2px; }
-    .terminal-box {
-      background: #0d1117; border: 1px solid #00FF8820; border-radius: 16px; padding: 24px 28px;
-    }
-    .terminal-dots { display: flex; gap: 8px; margin-bottom: 16px; align-items: center; }
-    .dot { width: 12px; height: 12px; border-radius: 50%; }
-    .terminal-label { font-family: monospace; font-size: 12px; color: #444; margin-left: 8px; }
-    .terminal-body { font-family: 'Courier New', monospace; font-size: 15px; line-height: 1.8; }
-    .term-line { display: block; }
-    .cursor { animation: blink 1s infinite; color: #00FF88; }
-    .scroll-hint { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); animation: float 2s infinite; color: #333; font-size: 24px; }
 
-    /* SECTIONS */
-    section { padding: 90px 5vw 60px; }
-    .section-inner { max-width: 960px; margin: 0 auto; }
-    .section-alt { background: #0a0e14; }
-    .section-label { font-family: monospace; font-size: 12px; color: #00FF88; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
-    .section-title { font-size: 38px; font-weight: 700; color: #fff; margin-bottom: 40px; line-height: 1.2; }
-
-    /* EXPERIENCE */
-    .exp-card { border-left: 3px solid var(--exp-color); padding-left: 24px; margin-bottom: 40px; }
-    .exp-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
-    .exp-company { font-family: monospace; font-size: 20px; font-weight: 700; }
-    .exp-role { font-size: 15px; color: #ccc; margin-top: 2px; }
-    .exp-meta { text-align: right; }
-    .exp-badge { border-radius: 20px; padding: 4px 14px; font-size: 11px; font-family: monospace; border: 1px solid; display: inline-block; }
-    .exp-location { font-size: 11px; color: #555; margin-top: 4px; }
-    .exp-engagements { margin-bottom: 12px; }
-    .eng-label { font-size: 11px; color: #555; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
-    .eng-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-    .eng-tag { border-radius: 6px; padding: 3px 10px; font-size: 11px; font-family: monospace; border: 1px solid; }
-    .exp-points { padding-left: 18px; }
-    .exp-points li { font-size: 14px; color: #888; margin-bottom: 6px; line-height: 1.6; }
-
-    /* PROJECTS */
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 24px; }
-    .project-card {
-      background: #0d1117; border: 1px solid #ffffff15; border-radius: 16px;
-      padding: 28px; transition: all 0.3s ease; cursor: default;
+    /* ── TICKER ──────────────────────────────────────── */
+    .ticker{background:var(--red);height:28px;overflow:hidden;display:flex;align-items:center;margin-top:58px}
+    .ticker-track{
+      display:flex;white-space:nowrap;
+      animation:marquee 24s linear infinite;
+      font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#fff;
     }
-    .project-card:hover { transform: translateY(-4px); }
-    .project-top { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 16px; }
-    .project-icon { font-size: 36px; }
-    .project-name { font-family: monospace; font-weight: 700; font-size: 20px; letter-spacing: 1px; }
-    .project-tagline { font-size: 13px; color: #888; margin-top: 2px; }
-    .project-desc { font-size: 14px; color: #bbb; line-height: 1.7; margin-bottom: 20px; }
-    .pill-label { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
-    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-    .pill-feature { border-radius: 20px; padding: 3px 10px; font-size: 12px; border: 1px solid; }
-    .pill-tech { background: #ffffff08; border: 1px solid #ffffff15; color: #aaa; font-size: 11px; padding: 2px 8px; border-radius: 4px; font-family: monospace; }
+    .ti{padding:0 32px}.td{opacity:.45;padding:0 2px}
 
-    /* AUTOMATIONS */
-    .auto-card {
-      background: #0d1117; border: 1px solid #ffffff15; border-radius: 12px;
-      padding: 20px 24px; cursor: pointer; transition: all 0.3s ease; margin-bottom: 12px;
+    /* ── HERO ────────────────────────────────────────── */
+    #hero{
+      position:relative;min-height:calc(100vh - 86px);
+      background:#000;overflow:hidden;
+      display:flex;flex-direction:column;align-items:center;justify-content:flex-start;
+      padding-top:70px;
     }
-    .auto-header { display: flex; align-items: center; justify-content: space-between; }
-    .auto-left { display: flex; align-items: center; gap: 14px; }
-    .auto-icon { font-size: 24px; }
-    .auto-title { font-weight: 600; font-size: 15px; color: #fff; font-family: monospace; }
-    .auto-desc { font-size: 13px; color: #888; margin-top: 4px; max-width: 520px; }
-    .auto-toggle { font-size: 18px; transition: transform 0.3s; }
-    .auto-flow { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
-    .flow-step { border-radius: 6px; padding: 4px 10px; font-size: 12px; border: 1px solid; white-space: nowrap; }
-    .flow-arrow { font-size: 14px; opacity: 0.6; }
+    /* cinematic scanline */
+    #hero::after{
+      content:'';position:absolute;left:0;right:0;height:1px;
+      background:linear-gradient(transparent,rgba(192,57,43,.06),transparent);
+      animation:scandown 7s linear infinite;pointer-events:none;z-index:8;
+    }
+    .vignette{
+      position:absolute;inset:0;
+      background:radial-gradient(ellipse at 50% 40%,transparent 25%,rgba(0,0,0,.92) 100%);
+      pointer-events:none;z-index:2;
+    }
+    .spotlight-beam{
+      position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+      width:1000px;height:460px;
+      background:radial-gradient(ellipse at 50% 100%,rgba(255,255,255,.055) 0%,transparent 65%);
+      pointer-events:none;z-index:1;
+      animation:spotlight 6s ease-in-out infinite;
+    }
 
-    /* SKILLS */
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; }
-    .skill-cat { background: #0d1117; border: 1px solid #ffffff0d; border-radius: 12px; padding: 20px; }
-    .skill-cat-label { font-family: monospace; font-size: 12px; color: #00FF88; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
-    .skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
-    .skill-pill {
-      background: #ffffff06; border: 1px solid #ffffff10; border-radius: 6px;
-      padding: 4px 10px; font-size: 12px; color: #bbb; font-family: monospace;
-      cursor: default; transition: all 0.2s;
+    /* ── AUTHENTIC TITLE ─────────────────────────────── */
+    .hero-content{position:relative;z-index:5;text-align:center;width:100%}
+    .hero-eyebrow{
+      font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:7px;
+      text-transform:uppercase;color:#444;margin-bottom:24px;
+      animation:fadeUp .7s .1s both;
     }
-    .skill-pill:hover { background: rgba(0,255,136,0.12); border-color: rgba(0,255,136,0.4); color: #00FF88; }
+    /* The title block — exact La Casa de Papel style */
+    .lcdp-title{
+      display:inline-flex;flex-direction:column;align-items:center;
+      gap:2px;margin-bottom:8px;
+      animation:titlein .9s .3s cubic-bezier(.22,1,.36,1) both;
+    }
+    .lcdp-row1{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:clamp(72px,11vw,148px);
+      letter-spacing:clamp(8px,1.5vw,20px);
+      color:#fff;line-height:.95;display:block;
+    }
+    .lcdp-row2{
+      display:flex;align-items:center;justify-content:center;
+      gap:clamp(8px,1.2vw,20px);
+    }
+    /* THE ICONIC "DE" RED BOX */
+    .lcdp-de{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:clamp(28px,4vw,58px);
+      letter-spacing:clamp(4px,0.8vw,10px);
+      background:var(--red);color:#fff;
+      padding:clamp(3px,0.5vw,8px) clamp(10px,1.5vw,22px);
+      display:inline-block;
+      animation:debox .5s .7s both;
+    }
+    .lcdp-papel{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:clamp(72px,11vw,148px);
+      letter-spacing:clamp(8px,1.5vw,20px);
+      color:#fff;line-height:.95;display:block;
+    }
 
-    /* CONTACT */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-    .contact-desc { font-size: 15px; color: #888; line-height: 1.8; margin-bottom: 28px; }
-    .email-card {
-      background: #0d1117; border: 1px solid #ffffff10; border-radius: 10px;
-      padding: 14px 18px; cursor: pointer; display: flex; justify-content: space-between;
-      align-items: center; transition: all 0.2s; margin-bottom: 12px;
+    .hero-name-line{
+      font-family:'Barlow Condensed',sans-serif;
+      font-size:clamp(14px,2vw,20px);letter-spacing:clamp(5px,1vw,12px);
+      text-transform:uppercase;color:#555;margin-top:12px;margin-bottom:6px;
+      animation:fadeUp .7s .9s both;
     }
-    .email-card:hover { border-color: #00FF8840; }
-    .email-label { font-size: 11px; color: #555; margin-bottom: 2px; font-family: monospace; }
-    .email-val { font-size: 14px; color: #ccc; font-family: monospace; }
-    .copy-hint { font-size: 12px; color: #555; transition: color 0.2s; }
-    .social-links { display: flex; gap: 10px; flex-wrap: wrap; }
-    .social-link {
-      background: #0d1117; border: 1px solid #ffffff10; border-radius: 8px;
-      padding: 8px 14px; font-size: 12px; color: #888; font-family: monospace;
-      text-decoration: none; transition: all 0.2s; display: inline-block;
+    .hero-name-line span{color:var(--red)}
+    .hero-quote{
+      font-family:'Barlow',sans-serif;font-style:italic;
+      font-size:clamp(13px,1.4vw,15px);color:rgba(255,255,255,.25);
+      margin-top:10px;margin-bottom:30px;
+      animation:fadeUp .7s 1.05s both;
     }
-    .social-link:hover { border-color: #00FF8840; color: #00FF88; }
-    .avail-card {
-      background: #0d1117; border: 1px solid #00FF8815; border-radius: 16px;
-      padding: 28px; text-align: center;
+    .hero-ctas{
+      display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+      animation:fadeUp .7s 1.15s both;
     }
-    .avail-rocket { font-size: 48px; margin-bottom: 12px; animation: float 3s infinite; display: block; }
-    .avail-title { font-family: monospace; font-size: 16px; color: #00FF88; margin-bottom: 8px; }
-    .avail-sub { font-size: 13px; color: #555; line-height: 1.7; }
-    .avail-views { margin-top: 20px; font-family: monospace; font-size: 11px; color: #333; }
+    .btn-p{
+      font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:4px;
+      background:var(--red);color:#fff;border:none;padding:12px 34px;
+      cursor:pointer;text-decoration:none;display:inline-block;
+      transition:background .2s,transform .2s;
+      clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));
+    }
+    .btn-p:hover{background:var(--red-lt);transform:translateY(-2px)}
+    .btn-o{
+      font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:4px;
+      background:transparent;color:#fff;border:1px solid rgba(255,255,255,.2);
+      padding:12px 34px;cursor:pointer;text-decoration:none;display:inline-block;
+      transition:border-color .2s,color .2s;
+    }
+    .btn-o:hover{border-color:var(--red);color:var(--red)}
+    .hero-stats{
+      display:flex;justify-content:center;gap:0;
+      margin-top:28px;padding-top:22px;
+      border-top:1px solid rgba(255,255,255,.05);
+      animation:fadeUp .7s 1.25s both;
+    }
+    .hs{padding:0 28px;border-right:1px solid rgba(255,255,255,.07)}
+    .hs:last-child{border-right:none}
+    .hs-n{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:2px;color:var(--red);line-height:1}
+    .hs-l{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#333;margin-top:2px}
 
-    /* FOOTER */
-    footer {
-      border-top: 1px solid #ffffff08; padding: 24px 5vw;
-      display: flex; justify-content: space-between; align-items: center;
-      max-width: 960px; margin: 0 auto;
+    /* ── BUILDING ────────────────────────────────────── */
+    .building-wrap{
+      position:relative;z-index:3;width:100%;
+      display:flex;justify-content:center;align-items:flex-end;
+      margin-top:32px;
+      animation:buildrise 2s .5s cubic-bezier(.22,1,.36,1) both;
     }
-    .footer-copy { font-family: monospace; font-size: 12px; color: #333; }
-    .footer-views { font-family: monospace; font-size: 11px; color: #222; }
+    .building-wrap svg{width:100%;max-width:1440px;height:auto;display:block}
 
-    /* EASTER EGG */
-    #easter-egg {
-      position: fixed; inset: 0; z-index: 999; background: #060a0fee;
-      display: none; flex-direction: column; align-items: center; justify-content: center;
-      cursor: pointer;
+    /* ── SECTION COMMONS ─────────────────────────────── */
+    section{padding:96px 5vw}
+    .si{max-width:1060px;margin:0 auto}
+    .s-alt{background:var(--bg2)}
+    .s-ey{
+      font-family:'Barlow Condensed',sans-serif;font-size:11px;
+      letter-spacing:5px;text-transform:uppercase;color:var(--red);margin-bottom:10px;
     }
-    #easter-egg.show { display: flex; }
-    .egg-emoji { font-size: 80px; animation: float 2s infinite; }
-    .egg-title { font-family: monospace; color: #00FF88; font-size: 20px; margin-top: 20px; }
-    .egg-sub { color: #555; font-size: 13px; margin-top: 8px; }
+    /* Authentic section title — same DE treatment */
+    .s-ttl{
+      display:inline-flex;align-items:center;gap:10px;
+      font-family:'Bebas Neue',sans-serif;
+      font-size:clamp(36px,5.5vw,68px);letter-spacing:5px;color:#fff;
+      line-height:1;margin-bottom:16px;
+    }
+    .s-ttl .de{
+      font-family:'Bebas Neue',sans-serif;
+      font-size:clamp(16px,2.5vw,30px);letter-spacing:3px;
+      background:var(--red);color:#fff;padding:3px 10px;
+      display:inline-block;
+    }
+    .s-rule{width:44px;height:2px;background:var(--red);margin-bottom:48px}
 
-    @media (max-width: 768px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
-      h1.hero-name { font-size: 38px; }
-      .section-title { font-size: 28px; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .contact-grid { grid-template-columns: 1fr; }
-      .nav-links { gap: 14px; }
-      .nav-link { font-size: 11px; }
+    /* ── EXPERIENCE ──────────────────────────────────── */
+    .tl{position:relative;padding-left:40px}
+    .tl::before{
+      content:'';position:absolute;left:8px;top:8px;bottom:8px;
+      width:1px;background:linear-gradient(to bottom,var(--red),transparent);
+    }
+    .ti-item{position:relative;margin-bottom:52px}
+    .ti-dot{
+      position:absolute;left:-40px;top:7px;
+      width:18px;height:18px;border-radius:50%;
+      border:1.5px solid var(--red);background:#000;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .ti-dot::after{content:'';width:7px;height:7px;border-radius:50%;background:var(--red)}
+    .ti-co{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;color:#fff;line-height:1;margin-bottom:6px}
+    .ti-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+    .ti-role{font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:var(--red)}
+    .ti-period{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;color:#333;border:1px solid #1c1c1c;padding:2px 9px}
+    .ti-engs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:11px}
+    .ti-eng{
+      font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;
+      color:var(--red);border:1px solid rgba(192,57,43,.25);padding:2px 10px;background:rgba(192,57,43,.07);
+    }
+    .ti-pts{list-style:none}
+    .ti-pts li{font-size:14px;color:#555;line-height:1.75;margin-bottom:5px;padding-left:16px;position:relative}
+    .ti-pts li::before{content:'—';position:absolute;left:0;color:rgba(192,57,43,.45);font-size:11px;top:3px}
+
+    /* ── PROJECTS ────────────────────────────────────── */
+    .pj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--bg3)}
+    .pj-card{
+      background:var(--bg);padding:44px;position:relative;overflow:hidden;
+      transition:background .3s;
+    }
+    .pj-card::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:2px;
+      background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s;
+    }
+    .pj-card:hover::before{transform:scaleX(1)}
+    .pj-card:hover{background:#0c0c0c}
+    .pj-n{font-family:'Bebas Neue',sans-serif;font-size:76px;color:var(--red);opacity:.06;position:absolute;top:14px;right:18px;line-height:1}
+    .pj-ico{font-size:28px;margin-bottom:16px}
+    .pj-name{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:3px;color:#fff;margin-bottom:4px}
+    .pj-tag{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:18px}
+    .pj-desc{font-size:14px;color:#555;line-height:1.75;margin-bottom:24px}
+    .pl{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#2c2c2c;margin-bottom:7px}
+    .ps{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+    .pr{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--red);border:1px solid rgba(192,57,43,.25);padding:3px 9px;background:rgba(192,57,43,.07)}
+    .pg{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#3a3a3a;border:1px solid #1c1c1c;padding:3px 9px}
+
+    /* ── AUTOMATIONS ─────────────────────────────────── */
+    .al{display:flex;flex-direction:column;gap:1px}
+    .ai-item{background:var(--bg2);border-left:2px solid transparent;padding:20px 26px;cursor:pointer;transition:all .25s}
+    .ai-item:hover,.ai-item.open{border-left-color:var(--red);background:var(--bg3)}
+    .ai-hdr{display:flex;align-items:center;justify-content:space-between}
+    .ai-l{display:flex;align-items:center;gap:14px}
+    .ai-num{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--red);opacity:.25;min-width:30px}
+    .ai-ico{font-size:18px}
+    .ai-ttl{font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:2px;text-transform:uppercase;color:#aaa}
+    .ai-tog{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--red);transition:transform .3s}
+    .ai-item.open .ai-tog{transform:rotate(45deg)}
+    .ai-body{display:none;padding-top:14px}
+    .ai-item.open .ai-body{display:block}
+    .ai-desc{font-size:13px;color:#444;line-height:1.7;margin-bottom:12px}
+    .flow{display:flex;align-items:center;flex-wrap:wrap;gap:0}
+    .fs{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#aaa;background:rgba(192,57,43,.07);border:1px solid rgba(192,57,43,.18);padding:5px 11px}
+    .fa{color:var(--red);font-size:13px;padding:0 2px;opacity:.6}
+
+    /* ── SKILLS ──────────────────────────────────────── */
+    .sk-wrap{display:grid;grid-template-columns:200px 1fr;gap:0}
+    .sk-nav{border-right:1px solid #161616}
+    .sk-nav-item{
+      font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;color:#2a2a2a;
+      padding:12px 20px;cursor:pointer;transition:all .2s;
+      border-left:2px solid transparent;display:flex;align-items:center;gap:8px;
+    }
+    .sk-nav-item:hover,.sk-nav-item.active{color:#fff;border-left-color:var(--red);background:rgba(192,57,43,.05)}
+    .sk-arr{color:var(--red);opacity:0;transition:opacity .2s;font-size:14px}
+    .sk-nav-item:hover .sk-arr,.sk-nav-item.active .sk-arr{opacity:1}
+    .sk-pane{padding:28px 40px;min-height:280px}
+    .sk-pane-ttl{font-family:'Bebas Neue',sans-serif;font-size:44px;letter-spacing:5px;color:var(--red);margin-bottom:20px;line-height:1}
+    .sk-pills{display:flex;flex-wrap:wrap;gap:9px}
+    .sk-pill{
+      font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;
+      color:#666;border:1px solid #1a1a1a;padding:7px 16px;transition:all .2s;cursor:default;
+    }
+    .sk-pill:hover{color:#fff;border-color:rgba(192,57,43,.4);background:rgba(192,57,43,.07)}
+
+    /* ── CONTACT ─────────────────────────────────────── */
+    .ct-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+    .ct-big{
+      font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,6.5vw,82px);
+      letter-spacing:4px;color:#fff;line-height:.95;margin-bottom:18px;
+    }
+    .ct-big .cde{
+      font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,3vw,38px);
+      background:var(--red);color:#fff;padding:2px 9px;margin:0 6px;display:inline-block;vertical-align:middle;
+    }
+    .ct-sub{font-size:14px;color:#444;line-height:1.8;margin-bottom:28px}
+    .ct-email{
+      display:flex;align-items:center;justify-content:space-between;
+      border:1px solid #181818;padding:16px 20px;cursor:pointer;
+      transition:border-color .2s;background:#0c0c0c;margin-bottom:14px;
+    }
+    .ct-email:hover{border-color:rgba(192,57,43,.45)}
+    .ct-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#333;margin-bottom:3px}
+    .ct-val{font-family:'Barlow Condensed',sans-serif;font-size:16px;letter-spacing:1px;color:#bbb}
+    .ct-copy{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--red)}
+    .ct-socs{display:flex;gap:7px;flex-wrap:wrap}
+    .ct-soc{
+      font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;
+      color:#333;border:1px solid #181818;padding:8px 14px;text-decoration:none;
+      background:#0c0c0c;transition:all .2s;display:inline-block;
+    }
+    .ct-soc:hover{color:var(--red);border-color:rgba(192,57,43,.35)}
+    .ct-card{
+      background:var(--red);padding:40px;text-align:center;position:relative;overflow:hidden;
+      clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,16px 100%,0 calc(100% - 16px));
+    }
+    .ct-card::after{content:'🎭';position:absolute;font-size:130px;right:-20px;bottom:-20px;opacity:.07;pointer-events:none}
+    .ct-ico{font-size:46px;display:block;animation:float 3s infinite;margin-bottom:12px}
+    .ct-card-ttl{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:5px;color:#fff;margin-bottom:6px}
+    .ct-card-sub{font-size:13px;color:rgba(255,255,255,.6);line-height:1.7}
+    .ct-card-views{margin-top:20px;font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,.22)}
+
+    /* ── FOOTER ──────────────────────────────────────── */
+    footer{background:#000;border-top:2px solid var(--red);padding:18px 5vw;display:flex;align-items:center;justify-content:space-between}
+    .fl{display:flex;align-items:center}
+    .fl-m{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:4px;color:#fff}
+    .fl-de{font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:2px;background:var(--red);color:#fff;padding:1px 6px;margin:0 4px}
+    .fc{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;color:#2a2a2a;text-transform:uppercase}
+    .fb{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:5px;color:#181818}
+
+    /* ── EASTER EGG ──────────────────────────────────── */
+    #egg{position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.97);display:none;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;text-align:center}
+    #egg.show{display:flex}
+    .eg-m{font-size:96px;animation:float 2s infinite}
+    .eg-t{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,6vw,66px);letter-spacing:8px;color:#fff;margin-top:18px}
+    .eg-t .eg-de{background:var(--red);color:#fff;padding:2px 12px;margin:0 5px}
+    .eg-b{font-family:'Bebas Neue',sans-serif;font-size:clamp(20px,4vw,38px);letter-spacing:8px;color:var(--red);margin-top:6px}
+    .eg-s{font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:4px;color:#222;margin-top:18px;text-transform:uppercase}
+
+    /* ── HAMBURGER ───────────────────────────────────── */
+    .hamburger{
+      display:none;flex-direction:column;justify-content:center;gap:5px;
+      width:36px;height:36px;cursor:pointer;background:none;border:none;padding:4px;
+      flex-shrink:0;
+    }
+    .hamburger span{
+      display:block;width:24px;height:1.5px;background:#fff;
+      transition:all .3s ease;transform-origin:center;
+    }
+    .hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+    .hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+    /* mobile nav drawer */
+    .mobile-nav{
+      display:none;position:fixed;top:58px;left:0;right:0;z-index:299;
+      background:rgba(4,4,4,0.98);border-bottom:1px solid rgba(192,57,43,0.3);
+      flex-direction:column;padding:16px 5vw 24px;
+      backdrop-filter:blur(12px);
+    }
+    .mobile-nav.open{display:flex}
+    .mobile-nav-link{
+      font-family:'Barlow Condensed',sans-serif;font-size:18px;letter-spacing:4px;
+      text-transform:uppercase;color:#888;text-decoration:none;
+      padding:14px 0;border-bottom:1px solid #141414;transition:color .2s;
+    }
+    .mobile-nav-link:last-child{border-bottom:none}
+    .mobile-nav-link:hover{color:#fff}
+    .mobile-nav-views{
+      font-family:'Barlow Condensed',sans-serif;font-size:11px;
+      letter-spacing:3px;color:var(--red);padding-top:16px;
+    }
+
+    @media(max-width:768px){
+      /* nav */
+      .nav-links{display:none}
+      .hamburger{display:flex}
+      .nav-brand .nb-main{font-size:16px;letter-spacing:3px}
+      .nb-de{font-size:11px;padding:1px 5px}
+
+      /* hero */
+      #hero{padding-top:40px}
+      .hero-content{padding:0 5vw}
+      .hero-eyebrow{font-size:9px;letter-spacing:5px;margin-bottom:16px}
+      .lcdp-row1{font-size:clamp(44px,13vw,64px);letter-spacing:4px}
+      .lcdp-papel{font-size:clamp(44px,13vw,64px);letter-spacing:4px}
+      .lcdp-de{font-size:clamp(20px,6vw,32px);letter-spacing:3px;padding:3px 10px}
+      .lcdp-row2{gap:8px}
+      .hero-name-line{font-size:11px;letter-spacing:4px;margin-top:8px}
+      .hero-quote{font-size:12px;margin-bottom:20px}
+      .hero-ctas{gap:8px}
+      .btn-p,.btn-o{font-size:14px;letter-spacing:3px;padding:10px 22px}
+      .hero-stats{gap:0;flex-wrap:wrap;justify-content:center}
+      .hs{padding:10px 14px}
+      .hs-n{font-size:28px}
+      .building-wrap{margin-top:20px}
+
+      /* sections */
+      section{padding:64px 5vw}
+      .s-ttl{font-size:clamp(28px,8vw,44px);letter-spacing:3px;gap:8px;flex-wrap:wrap}
+      .s-ttl .de{font-size:clamp(13px,4vw,20px)}
+      .s-rule{margin-bottom:32px}
+
+      /* experience */
+      .tl{padding-left:28px}
+      .ti-dot{left:-28px;width:14px;height:14px}
+      .ti-dot::after{width:5px;height:5px}
+      .ti-co{font-size:24px}
+      .ti-meta{gap:8px}
+
+      /* projects — single column */
+      .pj-grid{grid-template-columns:1fr}
+      .pj-card{padding:28px 22px}
+      .pj-name{font-size:28px}
+
+      /* skills */
+      .sk-wrap{grid-template-columns:1fr}
+      .sk-nav{
+        border-right:none;border-bottom:1px solid #161616;
+        display:flex;flex-wrap:wrap;gap:0;
+      }
+      .sk-nav-item{font-size:14px;padding:10px 14px;border-left:none;border-bottom:2px solid transparent}
+      .sk-nav-item:hover,.sk-nav-item.active{border-left:none;border-bottom-color:var(--red)}
+      .sk-arr{display:none}
+      .sk-pane{padding:20px 0}
+      .sk-pane-ttl{font-size:32px}
+
+      /* contact */
+      .ct-grid{grid-template-columns:1fr;gap:36px}
+      .ct-big{font-size:clamp(40px,10vw,60px)}
+      .ct-card{padding:28px}
+
+      /* footer */
+      footer{flex-direction:column;gap:10px;text-align:center;padding:20px 5vw}
+      .fb{display:none}
+    }
+
+    @media(max-width:420px){
+      .lcdp-row1{font-size:clamp(36px,12vw,52px)}
+      .lcdp-papel{font-size:clamp(36px,12vw,52px)}
+      .lcdp-de{font-size:clamp(16px,5vw,26px)}
+      .hs{padding:8px 10px}
+      .hero-stats{border-top:none;padding-top:12px}
     }
   </style>
 </head>
 <body>
 
+<!-- EASTER EGG -->
+<div id="egg" onclick="this.classList.remove('show')">
+  <div class="eg-m">🎭</div>
+  <div class="eg-t">ASHUTOSH <span class="eg-de">&</span> VAISHNAV</div>
+  <div class="eg-b">FULL STACK · AUTOMATION</div>
+  <div class="eg-s">You found the easter egg · Click anywhere to close</div>
+</div>
+
 <!-- NAV -->
 <nav>
-  <div class="nav-logo" id="nav-logo">AV.</div>
+  <div class="nav-brand" id="nav-logo">
+    <span class="nb-main">ASHUTOSH</span>
+    <span class="nb-de">V</span>
+    <span class="nb-main">VAISHNAV</span>
+  </div>
   <div class="nav-links">
     <a class="nav-link" href="#experience">Experience</a>
     <a class="nav-link" href="#projects">Projects</a>
@@ -233,477 +483,633 @@
     <a class="nav-link" href="#contact">Contact</a>
     <div class="nav-views" id="nav-views"></div>
   </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
-<!-- EASTER EGG -->
-<div id="easter-egg">
-  <div class="egg-emoji">🤖</div>
-  <div class="egg-title">You found the easter egg!</div>
-  <div class="egg-sub">Click anywhere to close</div>
+<!-- MOBILE NAV DRAWER -->
+<div class="mobile-nav" id="mobile-nav">
+  <a class="mobile-nav-link" href="#experience" onclick="closeMobileNav()">Experience</a>
+  <a class="mobile-nav-link" href="#projects" onclick="closeMobileNav()">Projects</a>
+  <a class="mobile-nav-link" href="#automations" onclick="closeMobileNav()">Automations</a>
+  <a class="mobile-nav-link" href="#skills" onclick="closeMobileNav()">Skills</a>
+  <a class="mobile-nav-link" href="#contact" onclick="closeMobileNav()">Contact</a>
+  <div class="mobile-nav-views" id="mobile-nav-views"></div>
 </div>
 
-<!-- HERO -->
+<!-- TICKER -->
+<div class="ticker"><div class="ticker-track" id="ticker"></div></div>
+
+<!-- ═══════════════ HERO ═══════════════════════════════ -->
 <section id="hero">
-  <canvas id="particle-canvas"></canvas>
-  <div class="hero-inner">
-    <div class="hero-grid">
-      <div class="hero-left">
-        <span class="badge badge-green">Open to work · India 🇮🇳</span>
-        <h1 class="hero-name" id="hero-name">Ashutosh<br><span>Vaishnav.</span></h1>
-        <p class="hero-desc">Full Stack Developer &amp; Automation Engineer with 5+ years building products that scale and workflows that run themselves. I bridge code and no-code to ship fast.</p>
-        <div class="hero-btns">
-          <a class="btn-primary" href="#contact">Let's Talk →</a>
-          <a class="btn-secondary" href="#projects">See My Work</a>
-        </div>
-        <div class="hero-stats">
-          <div>
-            <div class="stat-num">5+</div>
-            <div class="stat-sub">Years Exp.</div>
-          </div>
-          <div>
-            <div class="stat-num">50%</div>
-            <div class="stat-sub">Manual work saved</div>
-          </div>
-          <div>
-            <div class="stat-num">30%</div>
-            <div class="stat-sub">Faster lead response</div>
-          </div>
-        </div>
+  <div class="spotlight-beam"></div>
+  <div class="vignette"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">· Full Stack Developer · Automation Engineer · India ·</div>
+
+    <!-- NAME AS MAIN TITLE — same typographic treatment -->
+    <div class="lcdp-title">
+      <span class="lcdp-row1">ASHUTOSH</span>
+      <div class="lcdp-row2">
+        <span class="lcdp-de">VAISHNAV</span>
+        <span class="lcdp-papel">VAISHNAV</span>
       </div>
-      <div class="hero-right">
-        <div class="terminal-box">
-          <div class="terminal-dots">
-            <div class="dot" style="background:#ff5f57"></div>
-            <div class="dot" style="background:#febc2e"></div>
-            <div class="dot" style="background:#28c840"></div>
-            <span class="terminal-label">terminal</span>
-          </div>
-          <div class="terminal-body" id="terminal-output"></div>
+    </div>
+
+    <div class="hero-name-line">— <span>Full Stack Developer</span> · Automation Engineer —</div>
+    <p class="hero-quote">"I don't just write code — I build systems that scale and workflows that run themselves."</p>
+
+    <div class="hero-ctas">
+      <a class="btn-p" href="#contact">Get in Touch</a>
+      <a class="btn-o" href="#projects">See My Work</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-n">5+</div><div class="hs-l">Years Active</div></div>
+      <div class="hs"><div class="hs-n">50%</div><div class="hs-l">Work Automated</div></div>
+      <div class="hs"><div class="hs-n">30%</div><div class="hs-l">Faster Lead Response</div></div>
+      <div class="hs"><div class="hs-n" id="vstat">—</div><div class="hs-l">Operatives Visited</div></div>
+    </div>
+  </div>
+
+  <!-- THE BUILDING — monochrome white architectural model, exact show aesthetic -->
+  <div class="building-wrap">
+    <svg viewBox="0 0 1440 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
+      <defs>
+        <linearGradient id="fg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#D4D2CC"/>
+          <stop offset="100%" stop-color="#A8A6A0"/>
+        </linearGradient>
+        <linearGradient id="cg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#E4E2DC"/>
+          <stop offset="100%" stop-color="#C0BEB8"/>
+        </linearGradient>
+        <linearGradient id="rg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#DEDAD4"/>
+          <stop offset="100%" stop-color="#B8B6B0"/>
+        </linearGradient>
+        <linearGradient id="grnd" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1e1e1e"/>
+          <stop offset="100%" stop-color="#000"/>
+        </linearGradient>
+        <radialGradient id="glow2" cx="50%" cy="0%" r="70%">
+          <stop offset="0%" stop-color="#fff" stop-opacity="0.08"/>
+          <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="bsh" x="-3%" y="-3%" width="106%" height="130%">
+          <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000" flood-opacity="1"/>
+        </filter>
+        <filter id="tsh" x="-15%" y="-15%" width="130%" height="200%">
+          <feDropShadow dx="1" dy="3" stdDeviation="2" flood-color="#000" flood-opacity="0.9"/>
+        </filter>
+      </defs>
+
+      <!-- ground -->
+      <rect x="0" y="360" width="1440" height="40" fill="url(#grnd)"/>
+      <!-- ground glow (spotlight) -->
+      <ellipse cx="720" cy="362" rx="580" ry="16" fill="url(#glow2)"/>
+
+      <g filter="url(#bsh)">
+        <!-- ══ LEFT WING ══════════════════════════════ -->
+        <rect x="60" y="185" width="400" height="178" fill="url(#fg)"/>
+        <!-- roof ledge -->
+        <rect x="56" y="178" width="408" height="10" fill="#DCD8D2"/>
+        <!-- mid cornice -->
+        <rect x="60" y="272" width="400" height="5" fill="#B0AEA8"/>
+        <!-- base -->
+        <rect x="56" y="359" width="408" height="4" fill="#C0BEB8"/>
+        <!-- upper windows left wing -->
+        <rect x="76"  y="194" width="40" height="60" fill="#141414" rx="1"/>
+        <rect x="128" y="194" width="40" height="60" fill="#181818" rx="1"/>
+        <rect x="180" y="194" width="40" height="60" fill="#141414" rx="1"/>
+        <rect x="232" y="194" width="40" height="60" fill="#181818" rx="1"/>
+        <rect x="284" y="194" width="40" height="60" fill="#141414" rx="1"/>
+        <rect x="336" y="194" width="40" height="60" fill="#181818" rx="1"/>
+        <rect x="388" y="194" width="40" height="60" fill="#141414" rx="1"/>
+        <!-- window top bars -->
+        <rect x="76"  y="194" width="40" height="2" fill="#B8B6B0"/>
+        <rect x="128" y="194" width="40" height="2" fill="#B8B6B0"/>
+        <rect x="180" y="194" width="40" height="2" fill="#B8B6B0"/>
+        <rect x="232" y="194" width="40" height="2" fill="#B8B6B0"/>
+        <rect x="284" y="194" width="40" height="2" fill="#B8B6B0"/>
+        <rect x="336" y="194" width="40" height="2" fill="#B8B6B0"/>
+        <rect x="388" y="194" width="40" height="2" fill="#B8B6B0"/>
+        <!-- vertical dividers -->
+        <rect x="95"  y="208" width="2" height="28" fill="#A8A6A0"/>
+        <rect x="147" y="208" width="2" height="28" fill="#A8A6A0"/>
+        <rect x="199" y="208" width="2" height="28" fill="#A8A6A0"/>
+        <rect x="251" y="208" width="2" height="28" fill="#A8A6A0"/>
+        <rect x="303" y="208" width="2" height="28" fill="#A8A6A0"/>
+        <rect x="355" y="208" width="2" height="28" fill="#A8A6A0"/>
+        <rect x="407" y="208" width="2" height="28" fill="#A8A6A0"/>
+        <!-- lower windows left wing -->
+        <rect x="76"  y="282" width="40" height="58" fill="#181818" rx="1"/>
+        <rect x="128" y="282" width="40" height="58" fill="#141414" rx="1"/>
+        <rect x="180" y="282" width="40" height="58" fill="#181818" rx="1"/>
+        <rect x="232" y="282" width="40" height="58" fill="#141414" rx="1"/>
+        <rect x="284" y="282" width="40" height="58" fill="#181818" rx="1"/>
+        <rect x="336" y="282" width="40" height="58" fill="#141414" rx="1"/>
+        <rect x="388" y="282" width="40" height="58" fill="#181818" rx="1"/>
+        <rect x="76"  y="282" width="40" height="2" fill="#B0AEA8"/>
+        <rect x="128" y="282" width="40" height="2" fill="#B0AEA8"/>
+        <rect x="180" y="282" width="40" height="2" fill="#B0AEA8"/>
+        <rect x="232" y="282" width="40" height="2" fill="#B0AEA8"/>
+        <rect x="284" y="282" width="40" height="2" fill="#B0AEA8"/>
+        <rect x="336" y="282" width="40" height="2" fill="#B0AEA8"/>
+        <rect x="388" y="282" width="40" height="2" fill="#B0AEA8"/>
+
+        <!-- ══ CENTRE BLOCK (raised) ══════════════════ -->
+        <rect x="458" y="152" width="524" height="211" fill="url(#cg)"/>
+        <!-- roof parapet -->
+        <rect x="454" y="144" width="532" height="12" fill="url(#rg)"/>
+        <!-- mid cornice -->
+        <rect x="458" y="254" width="524" height="5" fill="#B8B6B0"/>
+        <!-- base -->
+        <rect x="454" y="359" width="532" height="4" fill="#D0CEC8"/>
+
+        <!-- upper windows centre — left side -->
+        <rect x="472" y="162" width="38" height="64" fill="#141414" rx="1"/>
+        <rect x="522" y="162" width="38" height="64" fill="#181818" rx="1"/>
+        <rect x="572" y="162" width="38" height="64" fill="#141414" rx="1"/>
+        <rect x="622" y="162" width="38" height="64" fill="#181818" rx="1"/>
+        <!-- right side (gap for portico) -->
+        <rect x="762" y="162" width="38" height="64" fill="#141414" rx="1"/>
+        <rect x="812" y="162" width="38" height="64" fill="#181818" rx="1"/>
+        <rect x="862" y="162" width="38" height="64" fill="#141414" rx="1"/>
+        <rect x="912" y="162" width="38" height="64" fill="#181818" rx="1"/>
+        <!-- upper frames -->
+        <rect x="472" y="162" width="38" height="2" fill="#C4C2BC"/>
+        <rect x="522" y="162" width="38" height="2" fill="#C4C2BC"/>
+        <rect x="572" y="162" width="38" height="2" fill="#C4C2BC"/>
+        <rect x="622" y="162" width="38" height="2" fill="#C4C2BC"/>
+        <rect x="762" y="162" width="38" height="2" fill="#C4C2BC"/>
+        <rect x="812" y="162" width="38" height="2" fill="#C4C2BC"/>
+        <rect x="862" y="162" width="38" height="2" fill="#C4C2BC"/>
+        <rect x="912" y="162" width="38" height="2" fill="#C4C2BC"/>
+        <!-- dividers -->
+        <rect x="490" y="178" width="2" height="28" fill="#B0AEA8"/>
+        <rect x="540" y="178" width="2" height="28" fill="#B0AEA8"/>
+        <rect x="590" y="178" width="2" height="28" fill="#B0AEA8"/>
+        <rect x="640" y="178" width="2" height="28" fill="#B0AEA8"/>
+        <rect x="780" y="178" width="2" height="28" fill="#B0AEA8"/>
+        <rect x="830" y="178" width="2" height="28" fill="#B0AEA8"/>
+        <rect x="880" y="178" width="2" height="28" fill="#B0AEA8"/>
+        <rect x="930" y="178" width="2" height="28" fill="#B0AEA8"/>
+
+        <!-- ══ PORTICO (entrance with 3 columns) ══════ -->
+        <rect x="660" y="144" width="102" height="220" fill="#D0CED8"/>
+        <!-- columns -->
+        <rect x="668" y="144" width="18" height="218" fill="#E8E6E0"/>
+        <rect x="700" y="144" width="18" height="218" fill="#E4E2DC"/>
+        <rect x="732" y="144" width="18" height="218" fill="#E8E6E0"/>
+        <!-- column caps -->
+        <rect x="664" y="140" width="26" height="7" fill="#EEECEA"/>
+        <rect x="696" y="140" width="26" height="7" fill="#EEECEA"/>
+        <rect x="728" y="140" width="26" height="7" fill="#EEECEA"/>
+        <!-- portico ceiling slab -->
+        <rect x="662" y="248" width="98" height="8" fill="#B8B6B0"/>
+        <!-- entrance door (dark recess) -->
+        <rect x="678" y="296" width="66" height="68" fill="#0a0a0a" rx="1"/>
+        <rect x="710" y="296" width="2" height="68" fill="#111"/>
+
+        <!-- lower windows centre — left -->
+        <rect x="472" y="264" width="38" height="80" fill="#141414" rx="1"/>
+        <rect x="522" y="264" width="38" height="80" fill="#181818" rx="1"/>
+        <rect x="572" y="264" width="38" height="80" fill="#141414" rx="1"/>
+        <rect x="622" y="264" width="38" height="80" fill="#181818" rx="1"/>
+        <!-- lower right -->
+        <rect x="762" y="264" width="38" height="80" fill="#141414" rx="1"/>
+        <rect x="812" y="264" width="38" height="80" fill="#181818" rx="1"/>
+        <rect x="862" y="264" width="38" height="80" fill="#141414" rx="1"/>
+        <rect x="912" y="264" width="38" height="80" fill="#181818" rx="1"/>
+        <!-- lower frames -->
+        <rect x="472" y="264" width="38" height="2" fill="#B8B6B0"/>
+        <rect x="522" y="264" width="38" height="2" fill="#B8B6B0"/>
+        <rect x="572" y="264" width="38" height="2" fill="#B8B6B0"/>
+        <rect x="622" y="264" width="38" height="2" fill="#B8B6B0"/>
+        <rect x="762" y="264" width="38" height="2" fill="#B8B6B0"/>
+        <rect x="812" y="264" width="38" height="2" fill="#B8B6B0"/>
+        <rect x="862" y="264" width="38" height="2" fill="#B8B6B0"/>
+        <rect x="912" y="264" width="38" height="2" fill="#B8B6B0"/>
+
+        <!-- ══ RIGHT WING ══════════════════════════════ -->
+        <rect x="980" y="185" width="400" height="178" fill="url(#fg)"/>
+        <rect x="976" y="178" width="408" height="10" fill="#D8D6D0"/>
+        <rect x="980" y="272" width="400" height="5" fill="#A8A6A0"/>
+        <rect x="976" y="359" width="408" height="4" fill="#B8B6B0"/>
+        <!-- upper right -->
+        <rect x="996"  y="194" width="40" height="60" fill="#181818" rx="1"/>
+        <rect x="1048" y="194" width="40" height="60" fill="#141414" rx="1"/>
+        <rect x="1100" y="194" width="40" height="60" fill="#181818" rx="1"/>
+        <rect x="1152" y="194" width="40" height="60" fill="#141414" rx="1"/>
+        <rect x="1204" y="194" width="40" height="60" fill="#181818" rx="1"/>
+        <rect x="1256" y="194" width="40" height="60" fill="#141414" rx="1"/>
+        <rect x="1308" y="194" width="40" height="60" fill="#181818" rx="1"/>
+        <rect x="996"  y="194" width="40" height="2" fill="#A8A6A0"/>
+        <rect x="1048" y="194" width="40" height="2" fill="#A8A6A0"/>
+        <rect x="1100" y="194" width="40" height="2" fill="#A8A6A0"/>
+        <rect x="1152" y="194" width="40" height="2" fill="#A8A6A0"/>
+        <rect x="1204" y="194" width="40" height="2" fill="#A8A6A0"/>
+        <rect x="1256" y="194" width="40" height="2" fill="#A8A6A0"/>
+        <rect x="1308" y="194" width="40" height="2" fill="#A8A6A0"/>
+        <rect x="1015"  y="208" width="2" height="28" fill="#A0A09A"/>
+        <rect x="1067"  y="208" width="2" height="28" fill="#A0A09A"/>
+        <rect x="1119"  y="208" width="2" height="28" fill="#A0A09A"/>
+        <rect x="1171"  y="208" width="2" height="28" fill="#A0A09A"/>
+        <rect x="1223"  y="208" width="2" height="28" fill="#A0A09A"/>
+        <rect x="1275"  y="208" width="2" height="28" fill="#A0A09A"/>
+        <rect x="1327"  y="208" width="2" height="28" fill="#A0A09A"/>
+        <!-- lower right -->
+        <rect x="996"  y="282" width="40" height="58" fill="#141414" rx="1"/>
+        <rect x="1048" y="282" width="40" height="58" fill="#181818" rx="1"/>
+        <rect x="1100" y="282" width="40" height="58" fill="#141414" rx="1"/>
+        <rect x="1152" y="282" width="40" height="58" fill="#181818" rx="1"/>
+        <rect x="1204" y="282" width="40" height="58" fill="#141414" rx="1"/>
+        <rect x="1256" y="282" width="40" height="58" fill="#181818" rx="1"/>
+        <rect x="1308" y="282" width="40" height="58" fill="#141414" rx="1"/>
+        <rect x="996"  y="282" width="40" height="2" fill="#A0A09A"/>
+        <rect x="1048" y="282" width="40" height="2" fill="#A0A09A"/>
+        <rect x="1100" y="282" width="40" height="2" fill="#A0A09A"/>
+        <rect x="1152" y="282" width="40" height="2" fill="#A0A09A"/>
+        <rect x="1204" y="282" width="40" height="2" fill="#A0A09A"/>
+        <rect x="1256" y="282" width="40" height="2" fill="#A0A09A"/>
+        <rect x="1308" y="282" width="40" height="2" fill="#A0A09A"/>
+      </g><!-- end building -->
+
+      <!-- ══ BARE WINTER TREES ══════════════════════════ -->
+      <!-- left group -->
+      <g filter="url(#tsh)" style="animation:treegrow 1.4s 1.4s cubic-bezier(.22,1,.36,1) both">
+        <!-- T1 -->
+        <rect x="22"  y="296" width="3" height="66" fill="#1c1c1c"/>
+        <line x1="23" y1="332" x2="0"  y2="308" stroke="#1c1c1c" stroke-width="2"/>
+        <line x1="23" y1="326" x2="46" y2="302" stroke="#1c1c1c" stroke-width="2"/>
+        <line x1="23" y1="345" x2="-5" y2="330" stroke="#181818" stroke-width="1.5"/>
+        <line x1="23" y1="340" x2="50" y2="324" stroke="#181818" stroke-width="1.5"/>
+        <line x1="0"  y1="308" x2="-12" y2="296" stroke="#141414" stroke-width="1"/>
+        <line x1="0"  y1="308" x2="3"  y2="294" stroke="#141414" stroke-width="1"/>
+        <line x1="46" y1="302" x2="58" y2="290" stroke="#141414" stroke-width="1"/>
+        <line x1="46" y1="302" x2="43" y2="288" stroke="#141414" stroke-width="1"/>
+        <!-- T2 -->
+        <rect x="130" y="306" width="3" height="56" fill="#1e1e1e"/>
+        <line x1="131" y1="338" x2="110" y2="318" stroke="#1e1e1e" stroke-width="2"/>
+        <line x1="131" y1="333" x2="152" y2="312" stroke="#1e1e1e" stroke-width="2"/>
+        <line x1="131" y1="348" x2="100" y2="335" stroke="#181818" stroke-width="1.5"/>
+        <line x1="131" y1="344" x2="160" y2="330" stroke="#181818" stroke-width="1.5"/>
+        <line x1="110" y1="318" x2="96"  y2="306" stroke="#141414" stroke-width="1"/>
+        <line x1="152" y1="312" x2="166" y2="300" stroke="#141414" stroke-width="1"/>
+        <!-- T3 -->
+        <rect x="236" y="312" width="3" height="50" fill="#1e1e1e"/>
+        <line x1="237" y1="340" x2="218" y2="322" stroke="#1e1e1e" stroke-width="2"/>
+        <line x1="237" y1="336" x2="256" y2="320" stroke="#1e1e1e" stroke-width="2"/>
+        <line x1="237" y1="350" x2="208" y2="338" stroke="#181818" stroke-width="1.5"/>
+        <line x1="237" y1="346" x2="264" y2="334" stroke="#181818" stroke-width="1.5"/>
+        <!-- T4 near entrance -->
+        <rect x="360" y="318" width="2.5" height="44" fill="#1e1e1e"/>
+        <line x1="361" y1="342" x2="344" y2="328" stroke="#1e1e1e" stroke-width="1.5"/>
+        <line x1="361" y1="338" x2="378" y2="325" stroke="#1e1e1e" stroke-width="1.5"/>
+        <line x1="361" y1="352" x2="332" y2="342" stroke="#181818" stroke-width="1"/>
+        <line x1="361" y1="348" x2="386" y2="340" stroke="#181818" stroke-width="1"/>
+      </g>
+      <!-- right group -->
+      <g filter="url(#tsh)" style="animation:treegrow 1.4s 1.6s cubic-bezier(.22,1,.36,1) both">
+        <!-- T5 near entrance right -->
+        <rect x="1080" y="318" width="2.5" height="44" fill="#1e1e1e"/>
+        <line x1="1081" y1="342" x2="1064" y2="328" stroke="#1e1e1e" stroke-width="1.5"/>
+        <line x1="1081" y1="338" x2="1098" y2="325" stroke="#1e1e1e" stroke-width="1.5"/>
+        <line x1="1081" y1="352" x2="1052" y2="342" stroke="#181818" stroke-width="1"/>
+        <line x1="1081" y1="348" x2="1106" y2="340" stroke="#181818" stroke-width="1"/>
+        <!-- T6 -->
+        <rect x="1204" y="312" width="3" height="50" fill="#1e1e1e"/>
+        <line x1="1205" y1="340" x2="1185" y2="322" stroke="#1e1e1e" stroke-width="2"/>
+        <line x1="1205" y1="336" x2="1224" y2="320" stroke="#1e1e1e" stroke-width="2"/>
+        <line x1="1205" y1="350" x2="1176" y2="338" stroke="#181818" stroke-width="1.5"/>
+        <line x1="1205" y1="346" x2="1232" y2="334" stroke="#181818" stroke-width="1.5"/>
+        <!-- T7 -->
+        <rect x="1308" y="306" width="3" height="56" fill="#1e1e1e"/>
+        <line x1="1309" y1="337" x2="1287" y2="317" stroke="#1e1e1e" stroke-width="2"/>
+        <line x1="1309" y1="332" x2="1330" y2="311" stroke="#1e1e1e" stroke-width="2"/>
+        <line x1="1309" y1="348" x2="1277" y2="334" stroke="#181818" stroke-width="1.5"/>
+        <line x1="1309" y1="344" x2="1338" y2="329" stroke="#181818" stroke-width="1.5"/>
+        <line x1="1287" y1="317" x2="1272" y2="304" stroke="#141414" stroke-width="1"/>
+        <line x1="1330" y1="311" x2="1344" y2="298" stroke="#141414" stroke-width="1"/>
+        <!-- T8 -->
+        <rect x="1414" y="296" width="3" height="66" fill="#1c1c1c"/>
+        <line x1="1415" y1="330" x2="1392" y2="306" stroke="#1c1c1c" stroke-width="2"/>
+        <line x1="1415" y1="325" x2="1438" y2="302" stroke="#1c1c1c" stroke-width="2"/>
+        <line x1="1415" y1="343" x2="1388" y2="328" stroke="#181818" stroke-width="1.5"/>
+        <line x1="1415" y1="338" x2="1440" y2="323" stroke="#181818" stroke-width="1.5"/>
+        <line x1="1392" y1="306" x2="1380" y2="293" stroke="#141414" stroke-width="1"/>
+        <line x1="1438" y1="302" x2="1450" y2="289" stroke="#141414" stroke-width="1"/>
+      </g>
+
+      <!-- Title on building -->
+      <g style="animation:fadeIn 1s 2.2s both">
+        <text x="720" y="118" font-family="'Bebas Neue',sans-serif" font-size="28"
+          letter-spacing="14" fill="#fff" text-anchor="middle" opacity=".9">ASHUTOSH</text>
+        <rect x="686" y="92" width="40" height="20" fill="#C0392B"/>
+        <text x="706" y="106" font-family="'Bebas Neue',sans-serif" font-size="12"
+          letter-spacing="2" fill="#fff" text-anchor="middle">&amp;</text>
+        <text x="740" y="106" font-family="'Bebas Neue',sans-serif" font-size="28"
+          letter-spacing="14" fill="#fff" text-anchor="start" opacity=".9">VAISHNAV</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══ EXPERIENCE ══════════════════════════════════════ -->
+<section id="experience" class="s-alt">
+  <div class="si">
+    <div class="s-ey">Work History</div>
+    <div class="s-ttl">WORK <span class="de">EXPERIENCE</span></div>
+    <div class="s-rule"></div>
+    <div class="tl">
+      <div class="ti-item">
+        <div class="ti-dot"></div>
+        <div class="ti-co">JumpStartCXO</div>
+        <div class="ti-meta">
+          <span class="ti-role">Senior Full Stack Engineer</span>
+          <span class="ti-period">Sep 2023 — Present · Remote</span>
         </div>
+        <ul class="ti-pts">
+          <li>Built a WebRTC-powered browser dialer integrated into a CRM platform, reducing lead response time by 30%.</li>
+          <li>Developed Digital Dealer — a dealership management platform with inventory, social campaigns, CRM pipelines, and analytics.</li>
+          <li>Designed dynamic RFM analysis dashboards with cross-filtering for industrial clients using Recharts.</li>
+          <li>Integrated AI-powered calling bots for lead qualification, cutting manual follow-up effort by 40%.</li>
+          <li>Automated business workflows reducing manual data entry by 50% using Pabbly, GoHighLevel, and custom integrations.</li>
+          <li>Built a call analysis system using audio transcripts to improve sales team performance.</li>
+        </ul>
+      </div>
+      <div class="ti-item">
+        <div class="ti-dot"></div>
+        <div class="ti-co">Turing</div>
+        <div class="ti-meta">
+          <span class="ti-role">LLM Trainer — Contract</span>
+          <span class="ti-period">Multiple Engagements · Remote</span>
+        </div>
+        <div class="ti-engs">
+          <span class="ti-eng">CUA Trainer · Dec 2025 – Jan 2026</span>
+          <span class="ti-eng">AI Workflow Trainer · Apr 2026 – May 2026</span>
+        </div>
+        <ul class="ti-pts">
+          <li>Created structured demonstrations to train LLMs on real-world software and development workflows.</li>
+          <li>Evaluated agent behavior, refined prompts, and improved model reasoning in system interaction tasks.</li>
+        </ul>
+      </div>
+      <div class="ti-item">
+        <div class="ti-dot"></div>
+        <div class="ti-co">Borderfree Technologies</div>
+        <div class="ti-meta">
+          <span class="ti-role">Software Engineer</span>
+          <span class="ti-period">Sep 2021 — Aug 2023 · Remote</span>
+        </div>
+        <ul class="ti-pts">
+          <li>Built dynamic channel pages for brands and creators to showcase live shows with Video.js and Redux.</li>
+          <li>Revamped product purchasing UX in live streams for a client with 700+ brands — boosted conversion by 30%.</li>
+          <li>Led development of core platform features including auth, dashboards, and product data flows.</li>
+          <li>Built scalable backend on AWS using DynamoDB, SES, Lambda, and S3.</li>
+        </ul>
+      </div>
+      <div class="ti-item">
+        <div class="ti-dot"></div>
+        <div class="ti-co">Inkaleido Agency</div>
+        <div class="ti-meta">
+          <span class="ti-role">Junior Developer</span>
+          <span class="ti-period">Jan 2021 — Aug 2021 · Remote</span>
+        </div>
+        <ul class="ti-pts">
+          <li>Developed responsive websites and custom e-commerce platforms for SMBs.</li>
+          <li>Integrated third-party APIs for workflow automation across SaaS platforms.</li>
+        </ul>
       </div>
     </div>
   </div>
-  <div class="scroll-hint">↓</div>
 </section>
 
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-inner">
-    <div class="section-label">02 / Experience</div>
-    <h2 class="section-title">Where I've Built Things</h2>
-
-    <!-- JumpStartCXO -->
-    <div class="exp-card" style="--exp-color:#00FF88">
-      <div class="exp-header">
-        <div>
-          <div class="exp-company" style="color:#00FF88">JumpStartCXO</div>
-          <div class="exp-role">Senior Full Stack Engineer</div>
-        </div>
-        <div class="exp-meta">
-          <span class="exp-badge" style="color:#00FF88;border-color:#00FF8840;background:#00FF8815">Sep 2023 – Present</span>
-          <div class="exp-location">Remote</div>
-        </div>
-      </div>
-      <ul class="exp-points">
-        <li>Built a WebRTC-powered browser dialer integrated into a CRM platform, reducing lead response time by 30%.</li>
-        <li>Developed a Used Car Dealership platform (Digital Dealer) with inventory management, social campaigns, CRM pipelines, and analytics dashboards.</li>
-        <li>Implemented dynamic RFM analysis dashboards with cross-filtering and Recharts visualizations for industrial clients.</li>
-        <li>Integrated AI-powered calling bots for lead qualification, cutting manual follow-up effort by 40%.</li>
-        <li>Automated key business workflows — reducing manual data entry by 50% — using Pabbly, GoHighLevel, and custom integrations.</li>
-        <li>Built a call analysis system using transcripts and audio data to improve sales team performance.</li>
-      </ul>
+<!-- ═══ PROJECTS ════════════════════════════════════════ -->
+<section id="projects" style="padding:96px 5vw;background:var(--bg)">
+  <div class="si">
+    <div class="s-ey">Things I've Built</div>
+    <div class="s-ttl">MY <span class="de">PROJECTS</span></div>
+    <div class="s-rule"></div>
+  </div>
+  <div class="pj-grid" style="max-width:1060px;margin:0 auto">
+    <div class="pj-card">
+      <div class="pj-n">01</div>
+      <div class="pj-ico">🚗</div>
+      <div class="pj-name">Digital Dealer</div>
+      <div class="pj-tag">The Automotive Intelligence Platform</div>
+      <p class="pj-desc">A full-featured dealership command centre — inventory tracking, social media campaign scheduling, CRM lead pipelines, and multi-dimensional analytics. All in one place.</p>
+      <div class="pl">Key Features</div>
+      <div class="ps"><span class="pr">Inventory Management</span><span class="pr">Social Campaigns</span><span class="pr">CRM Pipeline</span><span class="pr">Analytics</span></div>
+      <div class="pl" style="margin-top:10px">Tech Stack</div>
+      <div class="ps"><span class="pg">Next.js</span><span class="pg">TypeScript</span><span class="pg">Firebase</span><span class="pg">Cloud Run</span><span class="pg">Node.js</span><span class="pg">Express.js</span><span class="pg">Tailwind</span></div>
     </div>
-
-    <!-- Turing -->
-    <div class="exp-card" style="--exp-color:#FF6B35">
-      <div class="exp-header">
-        <div>
-          <div class="exp-company" style="color:#FF6B35">Turing</div>
-          <div class="exp-role">LLM Trainer – Contract</div>
-        </div>
-        <div class="exp-meta">
-          <span class="exp-badge" style="color:#FF6B35;border-color:#FF6B3540;background:#FF6B3515">Multiple Engagements</span>
-          <div class="exp-location">Remote</div>
-        </div>
-      </div>
-      <div class="exp-engagements">
-        <div class="eng-label">Engagements</div>
-        <div class="eng-tags">
-          <span class="eng-tag" style="color:#FF6B35;border-color:#FF6B3530;background:#FF6B3510">LLM Trainer - CUA · Dec 2025 – Jan 2026</span>
-          <span class="eng-tag" style="color:#FF6B35;border-color:#FF6B3530;background:#FF6B3510">Video Data Annotatorr · Apr 2026 – May 2026</span>
-        </div>
-      </div>
-      <ul class="exp-points">
-        <li>Created structured step-by-step demonstrations to train LLMs on real-world software and development workflows.</li>
-        <li>Evaluated agent behavior, refined prompts, and improved model reasoning in system interaction tasks.</li>
-      </ul>
+    <div class="pj-card">
+      <div class="pj-n">02</div>
+      <div class="pj-ico">📞</div>
+      <div class="pj-name">Dialer</div>
+      <div class="pj-tag">Smart CRM Calling System</div>
+      <p class="pj-desc">Browser-based dialer powered by Plivo SDK. Sales reps call CRM leads directly. Post-call, automated workflows log details, fetch recordings, run AI analysis, and update the CRM — zero manual entry.</p>
+      <div class="pl">Key Features</div>
+      <div class="ps"><span class="pr">Browser Calling</span><span class="pr">Auto CRM Sync</span><span class="pr">Call Analysis</span><span class="pr">Workflow Automation</span></div>
+      <div class="pl" style="margin-top:10px">Tech Stack</div>
+      <div class="ps"><span class="pg">React.js</span><span class="pg">Node.js</span><span class="pg">Plivo SDK</span><span class="pg">MUI</span><span class="pg">Pabbly</span></div>
     </div>
-
-    <!-- Borderfree -->
-    <div class="exp-card" style="--exp-color:#7B61FF">
-      <div class="exp-header">
-        <div>
-          <div class="exp-company" style="color:#7B61FF">Borderfree Technologies</div>
-          <div class="exp-role">Software Engineer</div>
-        </div>
-        <div class="exp-meta">
-          <span class="exp-badge" style="color:#7B61FF;border-color:#7B61FF40;background:#7B61FF15">Sep 2021 – Aug 2023</span>
-          <div class="exp-location">Remote</div>
-        </div>
-      </div>
-      <ul class="exp-points">
-        <li>Built dynamic channel pages for brands and creators to showcase live shows with Video.js and Redux.</li>
-        <li>Revamped product purchasing UX embedded in live streams for a client with 700+ brands — boosted conversion by 30%.</li>
-        <li>Led development of core platform features including auth, dashboards, and product data flows.</li>
-        <li>Built scalable backend infrastructure on AWS using DynamoDB, SES, Lambda, and S3.</li>
-      </ul>
+    <div class="pj-card">
+      <div class="pj-n">03</div>
+      <div class="pj-ico">📊</div>
+      <div class="pj-name">RFM Sales Dashboard</div>
+      <div class="pj-tag">Sales Intelligence & Analytics Platform</div>
+      <p class="pj-desc">A dynamic RFM (Recency, Frequency, Monetary) analysis tool to track and visualize sales and client performance. Interactive dashboards let industries analyze key metrics like sales trends and customer segmentation — with automated email reporting that delivered a 2× improvement in sales process efficiency.</p>
+      <div class="pl">Key Features</div>
+      <div class="ps"><span class="pr">RFM Analysis</span><span class="pr">Interactive Dashboards</span><span class="pr">Customer Segmentation</span><span class="pr">Automated Reporting</span></div>
+      <div class="pl" style="margin-top:10px">Tech Stack</div>
+      <div class="ps"><span class="pg">React.js</span><span class="pg">Recharts</span><span class="pg">Python</span><span class="pg">ERPNext</span><span class="pg">Node.js</span></div>
     </div>
-
-    <!-- Inkaleido -->
-    <div class="exp-card" style="--exp-color:#FFD166">
-      <div class="exp-header">
-        <div>
-          <div class="exp-company" style="color:#FFD166">Inkaleido Agency</div>
-          <div class="exp-role">Junior Developer</div>
-        </div>
-        <div class="exp-meta">
-          <span class="exp-badge" style="color:#FFD166;border-color:#FFD16640;background:#FFD16615">Jan 2021 – Aug 2021</span>
-          <div class="exp-location">Remote</div>
-        </div>
-      </div>
-      <ul class="exp-points">
-        <li>Developed responsive websites and custom e-commerce platforms for SMBs.</li>
-        <li>Integrated third-party APIs for workflow automation across SaaS platforms.</li>
-      </ul>
+    <div class="pj-card">
+      <div class="pj-n">04</div>
+      <div class="pj-ico">📺</div>
+      <div class="pj-name">Live Commerce Platform</div>
+      <div class="pj-tag">Brand & Creator Channel Experience</div>
+      <p class="pj-desc">Dynamic React-based channel pages for brands and creators to showcase live shows and popstreams. Integrated Video.js for live playback and Redux for state management — with brand-specific product purchasing embedded directly into live video. Serving 700+ brands with a 30% increase in purchase conversion and a doubling of customer engagement.</p>
+      <div class="pl">Key Features</div>
+      <div class="ps"><span class="pr">Live Video Streaming</span><span class="pr">In-Stream Shopping</span><span class="pr">Brand Channels</span><span class="pr">Platform UI</span></div>
+      <div class="pl" style="margin-top:10px">Tech Stack</div>
+      <div class="ps"><span class="pg">React.js</span><span class="pg">Redux</span><span class="pg">Video.js</span><span class="pg">Node.js</span><span class="pg">AWS</span></div>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects" class="section-alt">
-  <div class="section-inner">
-    <div class="section-label">03 / Projects</div>
-    <h2 class="section-title">Things I've Shipped</h2>
-    <div class="projects-grid">
+<!-- ═══ AUTOMATIONS ══════════════════════════════════════ -->
+<section id="automations" class="s-alt">
+  <div class="si">
+    <div class="s-ey">Workflow Automation</div>
+    <div class="s-ttl">MY <span class="de">AUTOMATIONS</span></div>
+    <div class="s-rule"></div>
+    <p style="font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:4px;text-transform:uppercase;color:#333;margin-bottom:32px">Real workflows I've built. Click each to see how it works.</p>
+    <div class="al" id="auto-list"></div>
+  </div>
+</section>
 
-      <!-- Digital Dealer -->
-      <div class="project-card" style="--pc:#00FF88" onmouseenter="this.style.borderColor='#00FF8860';this.style.boxShadow='0 12px 40px #00FF8820'" onmouseleave="this.style.borderColor='#ffffff15';this.style.boxShadow='none'">
-        <div class="project-top">
-          <div class="project-icon">🚗</div>
-          <div>
-            <div class="project-name" style="color:#00FF88">Digital Dealer</div>
-            <div class="project-tagline">All-in-one platform for used car dealerships</div>
-          </div>
-        </div>
-        <p class="project-desc">A full-featured dealership management platform that handles inventory tracking, social media campaign scheduling, CRM lead pipelines, and multi-dimensional analytics reporting — all in one dashboard.</p>
-        <div class="pill-label">Key Features</div>
-        <div class="pills">
-          <span class="pill-feature" style="color:#00FF88;border-color:#00FF8830;background:#00FF8815">Inventory management</span>
-          <span class="pill-feature" style="color:#00FF88;border-color:#00FF8830;background:#00FF8815">Social media campaigns</span>
-          <span class="pill-feature" style="color:#00FF88;border-color:#00FF8830;background:#00FF8815">CRM pipeline</span>
-          <span class="pill-feature" style="color:#00FF88;border-color:#00FF8830;background:#00FF8815">Analytics &amp; reporting</span>
-        </div>
-        <div class="pill-label">Tech Stack</div>
-        <div class="pills">
-          <span class="pill-tech">Next.js</span><span class="pill-tech">TypeScript</span><span class="pill-tech">Firebase</span>
-          <span class="pill-tech">Cloud Run</span><span class="pill-tech">Cloud Storage</span><span class="pill-tech">Node.js</span>
-          <span class="pill-tech">Express.js</span><span class="pill-tech">Tailwind CSS</span>
-        </div>
+<!-- ═══ SKILLS ══════════════════════════════════════════ -->
+<section id="skills" style="background:var(--bg);padding:96px 5vw">
+  <div class="si">
+    <div class="s-ey">Technologies & Tools</div>
+    <div class="s-ttl">MY <span class="de">SKILLS</span></div>
+    <div class="s-rule"></div>
+    <div class="sk-wrap">
+      <div class="sk-nav" id="sk-nav"></div>
+      <div class="sk-pane">
+        <div class="sk-pane-ttl" id="sp-ttl"></div>
+        <div class="sk-pills" id="sp-pills"></div>
       </div>
-
-      <!-- Dialer -->
-      <div class="project-card" onmouseenter="this.style.borderColor='#7B61FF60';this.style.boxShadow='0 12px 40px #7B61FF20'" onmouseleave="this.style.borderColor='#ffffff15';this.style.boxShadow='none'">
-        <div class="project-top">
-          <div class="project-icon">📞</div>
-          <div>
-            <div class="project-name" style="color:#7B61FF">Dialer</div>
-            <div class="project-tagline">CRM-integrated smart calling system</div>
-          </div>
-        </div>
-        <p class="project-desc">A browser-based dialer powered by Plivo SDK that lets sales reps call CRM leads directly. Post-call, it automatically triggers workflows to log call details, fetch recordings, run analysis, and update the CRM — zero manual entry.</p>
-        <div class="pill-label">Key Features</div>
-        <div class="pills">
-          <span class="pill-feature" style="color:#7B61FF;border-color:#7B61FF30;background:#7B61FF15">Browser-based calling</span>
-          <span class="pill-feature" style="color:#7B61FF;border-color:#7B61FF30;background:#7B61FF15">Auto CRM updates</span>
-          <span class="pill-feature" style="color:#7B61FF;border-color:#7B61FF30;background:#7B61FF15">Call recording &amp; analysis</span>
-          <span class="pill-feature" style="color:#7B61FF;border-color:#7B61FF30;background:#7B61FF15">Workflow automation</span>
-        </div>
-        <div class="pill-label">Tech Stack</div>
-        <div class="pills">
-          <span class="pill-tech">React.js</span><span class="pill-tech">Node.js</span><span class="pill-tech">Plivo SDK</span>
-          <span class="pill-tech">MUI</span><span class="pill-tech">Pabbly Workflows</span>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<!-- AUTOMATIONS -->
-<section id="automations">
-  <div class="section-inner">
-    <div class="section-label">04 / Automation Workflows</div>
-    <h2 class="section-title">Workflows I've Built</h2>
-    <p style="font-size:15px;color:#666;margin-bottom:32px;max-width:560px">Real automation use-cases I've shipped. Click each to see the flow.</p>
-    <div id="automations-list"></div>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills" class="section-alt">
-  <div class="section-inner">
-    <div class="section-label">05 / Skills</div>
-    <h2 class="section-title">My Toolkit</h2>
-    <div class="skills-grid" id="skills-grid"></div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-inner">
-    <div class="section-label">06 / Contact</div>
-    <h2 class="section-title">Let's Build Something</h2>
-    <div class="contact-grid">
+<!-- ═══ CONTACT ══════════════════════════════════════════ -->
+<section id="contact" class="s-alt">
+  <div class="si">
+    <div class="s-ey">Get in Touch</div>
+    <div class="s-ttl">LET'S <span class="de">CONNECT</span></div>
+    <div class="s-rule"></div>
+    <div class="ct-grid">
       <div>
-        <p class="contact-desc">Whether it's a full-stack product, a complex automation workflow, or just a quick chat about tech — my inbox is open.</p>
-        <div class="email-card" onclick="copyEmail(this)">
+        <div class="ct-big">Available<br>For <span class="cde">New</span> Work.</div>
+        <p class="ct-sub">Whether it's a full-stack product, a complex automation workflow, or just a quick chat about tech — my inbox is open. Let's build something great together.</p>
+        <div class="ct-email" onclick="copyEmail()">
           <div>
-            <div class="email-label">Email</div>
-            <div class="email-val">avaishnav6292@gmail.com</div>
+            <div class="ct-lbl">Email</div>
+            <div class="ct-val">avaishnav6292@gmail.com</div>
           </div>
-          <span class="copy-hint" id="copy-hint">Click to copy</span>
+          <span class="ct-copy" id="copy-lbl">Copy →</span>
         </div>
-        <div class="social-links">
-          <a class="social-link" href="https://www.linkedin.com/in/avaishnav6292" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="social-link" href="https://github.com/avaishnav6292" target="_blank" rel="noopener">GitHub</a>
-          <a class="social-link" href="https://www.hackerrank.com/avaishnav6292" target="_blank" rel="noopener">HackerRank</a>
-          <a class="social-link" href="https://www.leetcode.com/ashutoshv6292" target="_blank" rel="noopener">LeetCode</a>
+        <div class="ct-socs">
+          <a class="ct-soc" href="https://www.linkedin.com/in/avaishnav6292" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="ct-soc" href="https://github.com/avaishnav6292" target="_blank" rel="noopener">GitHub</a>
+          <a class="ct-soc" href="https://www.hackerrank.com/avaishnav6292" target="_blank" rel="noopener">HackerRank</a>
+          <a class="ct-soc" href="https://www.leetcode.com/ashutoshv6292" target="_blank" rel="noopener">LeetCode</a>
         </div>
       </div>
-      <div class="avail-card">
-        <span class="avail-rocket">🚀</span>
-        <div class="avail-title">Currently Available</div>
-        <div class="avail-sub">Open to freelance projects,<br>consulting, and collaborations.</div>
-        <div class="avail-views" id="avail-views"></div>
+      <div class="ct-card">
+        <span class="ct-ico">🎭</span>
+        <div class="ct-card-ttl">Currently Available</div>
+        <div class="ct-card-sub">Open to freelance projects,<br>consulting, and collaborations.<br>India · Remote · Worldwide.</div>
+        <div class="ct-card-views" id="card-views"></div>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <span class="footer-copy">Built by Ashutosh Vaishnav · <span id="year"></span></span>
-  <span class="footer-views" id="footer-views"></span>
+  <div class="fl">
+    <span class="fl-m">ASHUTOSH</span>
+    <span class="fl-de">V</span>
+    <span class="fl-m">VAISHNAV</span>
+  </div>
+  <div class="fc" id="fc"></div>
+  <div class="fb">FULL STACK · AUTOMATION</div>
 </footer>
 
 <script>
-  // ── DATA ──────────────────────────────────────────────────────────────────
-  const AUTOMATIONS = [
-    { id:1, title:"CRM Lead → Instant Auto-Call", icon:"⚡", color:"#00FF88",
-      description:"When a new lead lands in the CRM, a call is automatically triggered, waited for, then the result is fetched and synced back — all without human intervention.",
-      flow:["Lead Created in CRM","Trigger Call via Dialer","Wait for Call End","Fetch Call Details","Update CRM Record"] },
-    { id:2, title:"Google Sheet → WhatsApp Notification", icon:"💬", color:"#FF6B35",
-      description:"Any update to a tracked sheet row fires a formatted WhatsApp message to the right team member in real time.",
-      flow:["Sheet Row Edited","Webhook Triggered","Format Message","Send WhatsApp via API"] },
-    { id:3, title:"Form Submission → Full Sales Funnel", icon:"🎯", color:"#7B61FF",
-      description:"A single form fill auto-adds the contact to CRM, assigns a rep, sends a welcome email, schedules a follow-up, and logs everything in a tracking sheet.",
-      flow:["Form Submitted","Create CRM Contact","Assign Sales Rep","Send Welcome Email","Log in Tracker Sheet"] },
-    { id:4, title:"Scheduled Report → Email Digest", icon:"📊", color:"#FFD166",
-      description:"Every morning, data is pulled from multiple sources, aggregated, formatted, and emailed as a clean report — fully automated on a schedule.",
-      flow:["Cron Schedule","Pull from Sources","Aggregate & Format","Email Report"] },
-    { id:5, title:"AI Call Transcript → Insight Summary", icon:"🤖", color:"#FF61A0",
-      description:"Call recordings are transcribed, sent to an AI for analysis, and the key insights — sentiment, intent, next steps — are pushed back into the CRM deal record.",
-      flow:["Call Recorded","Transcribe Audio","AI Analysis","Extract Insights","Update CRM Deal"] },
+  const AUTOS=[
+    {id:1,icon:"⚡",title:"CRM Lead → Instant Auto-Call",
+     desc:"When a new lead lands in the CRM, a call is triggered, waited for, result fetched and synced back — zero human intervention.",
+     flow:["Lead Created in CRM","Trigger Call via Dialer","Wait for Call End","Fetch Call Details","Update CRM Record"]},
+    {id:2,icon:"💬",title:"Google Sheet → WhatsApp Notification",
+     desc:"Any update to a tracked sheet row fires a formatted WhatsApp message to the right team member in real time.",
+     flow:["Sheet Row Edited","Webhook Triggered","Format Message","Send WhatsApp via API"]},
+    {id:3,icon:"🎯",title:"Form Submission → Full Sales Funnel",
+     desc:"A single form fill auto-creates a CRM contact, assigns a rep, sends a welcome email, schedules follow-up, and logs everything.",
+     flow:["Form Submitted","Create CRM Contact","Assign Sales Rep","Send Welcome Email","Log in Tracker"]},
+    {id:4,icon:"📊",title:"Scheduled Report → Email Digest",
+     desc:"Every morning, data is pulled, aggregated, formatted, and emailed as a clean report — fully automated on schedule.",
+     flow:["Cron Schedule","Pull from Sources","Aggregate & Format","Email Report"]},
+    {id:5,icon:"🤖",title:"AI Call Transcript → Insight Summary",
+     desc:"Call recordings are transcribed, sent to AI, and key insights — sentiment, intent, next steps — pushed back into the CRM.",
+     flow:["Call Recorded","Transcribe Audio","AI Analysis","Extract Insights","Update CRM Deal"]},
   ];
-
-  const SKILLS = {
-    "Languages": ["JavaScript","TypeScript","Python","C++","SQL"],
-    "Frontend": ["React.js","Next.js","Tailwind CSS","Redux","HTML/CSS"],
-    "Backend": ["Node.js","Express.js","Flask","FastAPI"],
-    "Databases": ["MongoDB","PostgreSQL","DynamoDB","MySQL","Firebase"],
-    "Cloud": ["AWS (S3, SES, Lambda)","Google Cloud","Firebase","Cloud Run"],
-    "Automation": ["Pabbly","n8n","Make","Zapier","GoHighLevel"],
-    "APIs & Tools": ["Google Workspace APIs","Plivo SDK","WebRTC","RESTful APIs","Git"],
+  const SKILLS={
+    "Languages":["JavaScript","TypeScript","Python","C++","SQL"],
+    "Frontend":["React.js","Next.js","Tailwind CSS","Redux","HTML/CSS"],
+    "Backend":["Node.js","Express.js","Flask","FastAPI"],
+    "Databases":["MongoDB","PostgreSQL","DynamoDB","MySQL","Firebase"],
+    "Cloud":["AWS (S3, SES, Lambda)","Google Cloud","Firebase","Cloud Run"],
+    "Automation":["Pabbly","n8n","Make","Zapier","GoHighLevel"],
+    "APIs & Tools":["Google Workspace APIs","Plivo SDK","WebRTC","RESTful APIs","Git"],
   };
 
-  // ── VIEW COUNTER ──────────────────────────────────────────────────────────
-  const STORAGE_KEY = "av_portfolio_views";
-  const stored = localStorage.getItem(STORAGE_KEY);
-  const views = stored ? parseInt(stored, 10) + 1 : 1;
-  localStorage.setItem(STORAGE_KEY, views.toString());
-  const viewText = `👁 ${views.toLocaleString()} views`;
-  document.getElementById("nav-views").textContent = viewText;
-  document.getElementById("footer-views").textContent = viewText;
-  document.getElementById("avail-views").textContent = `${views.toLocaleString()} people have visited this portfolio`;
-  document.getElementById("year").textContent = new Date().getFullYear();
+  // Views
+  const sv=localStorage.getItem("av_lcpdp2");
+  const vv=sv?parseInt(sv)+1:1;
+  localStorage.setItem("av_lcpdp2",vv);
+  document.getElementById("nav-views").textContent="👁 "+vv.toLocaleString();
+  document.getElementById("vstat").textContent=vv.toLocaleString();
+  document.getElementById("card-views").textContent=vv.toLocaleString()+" people have visited";
+  document.getElementById("fc").textContent="Ashutosh Vaishnav · "+new Date().getFullYear();
+  const mnv=document.getElementById("mobile-nav-views");
+  if(mnv)mnv.textContent="👁 "+vv.toLocaleString()+" visits";
 
-  // ── EASTER EGG ────────────────────────────────────────────────────────────
-  let clickCount = 0;
-  function handleNameClick() {
-    clickCount++;
-    if (clickCount >= 5) {
-      document.getElementById("easter-egg").classList.add("show");
-      clickCount = 0;
-    }
+  // Ticker
+  const ti=["Full Stack Developer","Automation Engineer","React · Node · Python","Pabbly · n8n · GoHighLevel","AWS · Firebase · GCP","Open to Work","India · Remote · Worldwide","5+ Years Experience","Building Products That Scale"];
+  const td=[...ti,...ti];
+  document.getElementById("ticker").innerHTML=td.map((t,i)=>`<span class="ti">${t}</span>${i<td.length-1?'<span class="td">✦</span>':''}`).join('');
+
+  // Easter egg
+  let ec=0;
+  document.getElementById("nav-logo").addEventListener("click",()=>{if(++ec>=5){document.getElementById("egg").classList.add("show");ec=0;}});
+
+  // Automations
+  let oid=null;
+  function renderAutos(){
+    const l=document.getElementById("auto-list");l.innerHTML="";
+    AUTOS.forEach((a,i)=>{
+      const op=oid===a.id;
+      const d=document.createElement("div");
+      d.className="ai-item"+(op?" open":"");
+      let fh="";
+      if(op){fh='<div class="ai-body"><p class="ai-desc">'+a.desc+'</p><div class="flow">';a.flow.forEach((s,si)=>{fh+='<span class="fs">'+s+'</span>';if(si<a.flow.length-1)fh+='<span class="fa">→</span>';});fh+='</div></div>';}
+      d.innerHTML=`<div class="ai-hdr"><div class="ai-l"><span class="ai-num">0${i+1}</span><span class="ai-ico">${a.icon}</span><span class="ai-ttl">${a.title}</span></div><span class="ai-tog">+</span></div>${fh}`;
+      d.addEventListener("click",()=>{oid=oid===a.id?null:a.id;renderAutos();});
+      l.appendChild(d);
+    });
   }
-  document.getElementById("nav-logo").addEventListener("click", handleNameClick);
-  document.getElementById("hero-name").addEventListener("click", handleNameClick);
-  document.getElementById("easter-egg").addEventListener("click", function() {
-    this.classList.remove("show");
+  renderAutos();
+
+  // Skills
+  const sk=Object.keys(SKILLS);let as=sk[0];
+  function renderSkills(){
+    const n=document.getElementById("sk-nav");n.innerHTML="";
+    sk.forEach(k=>{const d=document.createElement("div");d.className="sk-nav-item"+(k===as?" active":"");d.innerHTML=`<span class="sk-arr">→</span>${k}`;d.addEventListener("click",()=>{as=k;renderSkills();});n.appendChild(d);});
+    document.getElementById("sp-ttl").textContent=as;
+    document.getElementById("sp-pills").innerHTML=SKILLS[as].map(s=>`<span class="sk-pill">${s}</span>`).join('');
+  }
+  renderSkills();
+
+  // Copy
+  function copyEmail(){
+    navigator.clipboard.writeText("avaishnav6292@gmail.com").then(()=>{
+      const e=document.getElementById("copy-lbl");e.textContent="✓ Copied";setTimeout(()=>e.textContent="Copy →",2000);
+    });
+  }
+
+  // Hamburger
+  const hbtn=document.getElementById("hamburger");
+  const mnav=document.getElementById("mobile-nav");
+  hbtn.addEventListener("click",()=>{
+    hbtn.classList.toggle("open");
+    mnav.classList.toggle("open");
   });
-
-  // ── TERMINAL TYPING ───────────────────────────────────────────────────────
-  const termLines = [
-    { text: "$ whoami", color: "#00FF88" },
-    { text: "Ashutosh Vaishnav", color: "#fff" },
-    { text: "$ cat role.txt", color: "#00FF88" },
-    { text: "Full Stack Developer + Automation Engineer", color: "#aaa" },
-    { text: "$ echo $SUPERPOWER", color: "#00FF88" },
-    { text: "Making apps talk to each other 🤝", color: "#fff" },
-    { text: "$ ./status.sh", color: "#00FF88" },
-    { text: "Available for work · Open to collabs", color: "#aaa" },
-  ];
-  const termOutput = document.getElementById("terminal-output");
-  let lineIdx = 0, charIdx = 0;
-  let currentSpan = null;
-
-  function typeNext() {
-    if (lineIdx >= termLines.length) return;
-    const line = termLines[lineIdx];
-    if (charIdx === 0) {
-      currentSpan = document.createElement("span");
-      currentSpan.className = "term-line";
-      currentSpan.style.color = line.color;
-      currentSpan.innerHTML = lineIdx % 2 === 0 ? '<span style="color:#555">❯ </span>' : '  ';
-      termOutput.appendChild(currentSpan);
-    }
-    if (charIdx < line.text.length) {
-      const txt = currentSpan.innerHTML;
-      currentSpan.innerHTML = txt + line.text[charIdx];
-      charIdx++;
-      setTimeout(typeNext, 35);
-    } else {
-      lineIdx++; charIdx = 0;
-      setTimeout(typeNext, 300);
-    }
+  function closeMobileNav(){
+    hbtn.classList.remove("open");
+    mnav.classList.remove("open");
   }
-  setTimeout(typeNext, 500);
-
-  // ── AUTOMATIONS ───────────────────────────────────────────────────────────
-  let openAuto = null;
-  const autoList = document.getElementById("automations-list");
-
-  function renderAutomations() {
-    autoList.innerHTML = "";
-    AUTOMATIONS.forEach(item => {
-      const isOpen = openAuto === item.id;
-      const card = document.createElement("div");
-      card.className = "auto-card";
-      card.style.borderColor = isOpen ? item.color + "60" : "#ffffff15";
-
-      let flowHTML = "";
-      if (isOpen) {
-        flowHTML = '<div class="auto-flow">';
-        item.flow.forEach((step, i) => {
-          flowHTML += `<span class="flow-step" style="color:${item.color};border-color:${item.color}40;background:${item.color}15">${step}</span>`;
-          if (i < item.flow.length - 1) flowHTML += `<span class="flow-arrow" style="color:${item.color}">→</span>`;
-        });
-        flowHTML += "</div>";
-      }
-
-      card.innerHTML = `
-        <div class="auto-header">
-          <div class="auto-left">
-            <span class="auto-icon">${item.icon}</span>
-            <div>
-              <div class="auto-title">${item.title}</div>
-              ${isOpen ? `<div class="auto-desc">${item.description}</div>` : ""}
-            </div>
-          </div>
-          <span class="auto-toggle" style="color:${item.color};transform:${isOpen ? "rotate(45deg)" : "none"}">+</span>
-        </div>
-        ${flowHTML}
-      `;
-      card.addEventListener("click", () => {
-        openAuto = openAuto === item.id ? null : item.id;
-        renderAutomations();
-      });
-      autoList.appendChild(card);
-    });
-  }
-  renderAutomations();
-
-  // ── SKILLS ────────────────────────────────────────────────────────────────
-  const skillsGrid = document.getElementById("skills-grid");
-  Object.entries(SKILLS).forEach(([cat, items]) => {
-    const div = document.createElement("div");
-    div.className = "skill-cat";
-    div.innerHTML = `<div class="skill-cat-label">${cat}</div><div class="skill-pills">${items.map(s => `<span class="skill-pill">${s}</span>`).join("")}</div>`;
-    skillsGrid.appendChild(div);
+  // Close on outside click
+  document.addEventListener("click",(e)=>{
+    if(!hbtn.contains(e.target)&&!mnav.contains(e.target)){closeMobileNav();}
   });
-
-  // ── COPY EMAIL ────────────────────────────────────────────────────────────
-  function copyEmail(card) {
-    navigator.clipboard.writeText("avaishnav6292@gmail.com").then(() => {
-      const hint = document.getElementById("copy-hint");
-      hint.textContent = "✓ Copied!";
-      hint.style.color = "#00FF88";
-      setTimeout(() => { hint.textContent = "Click to copy"; hint.style.color = "#555"; }, 2000);
-    });
-  }
-
-  // ── PARTICLE CANVAS ───────────────────────────────────────────────────────
-  const canvas = document.getElementById("particle-canvas");
-  const ctx = canvas.getContext("2d");
-  const particles = [];
-
-  function resizeCanvas() {
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
-
-  for (let i = 0; i < 60; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      r: Math.random() * 1.5 + 0.5,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3,
-      alpha: Math.random() * 0.5 + 0.1,
-    });
-  }
-
-  function drawParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const W = canvas.width, H = canvas.height;
-    particles.forEach(p => {
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
-      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(0,255,136,${p.alpha})`;
-      ctx.fill();
-    });
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const d = Math.sqrt(dx*dx + dy*dy);
-        if (d < 100) {
-          ctx.beginPath();
-          ctx.strokeStyle = `rgba(0,255,136,${0.08*(1-d/100)})`;
-          ctx.lineWidth = 0.5;
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.stroke();
-        }
-      }
-    }
-    requestAnimationFrame(drawParticles);
-  }
-  drawParticles();
 </script>
 </body>
 </html>
